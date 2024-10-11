@@ -7,6 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeVibe.API", "WeVibe.API\We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{633BBA77-5B0E-4038-B605-B5C148472F55}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0B9679CF-729B-487B-9F83-2C75084D1CFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeVibe.Core.Domain", "WeVibe.Core.Domain\WeVibe.Core.Domain.csproj", "{A37962FA-55E8-4A5E-AD96-370D43F1F36F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeVibe.Core.Services", "WeVibe.Core.Services\WeVibe.Core.Services.csproj", "{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeVibe.Core.Contracts", "WeVibe.Core.Contracts\WeVibe.Core.Contracts.csproj", "{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{38ADA106-6D9C-492A-AF73-E025372705C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeVibe.Infrastructure.Persistence", "WeVibe.Infrastructure.Persistence\WeVibe.Infrastructure.Persistence.csproj", "{8CC67343-8457-4BBA-8E24-3FF67497F8D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +29,32 @@ Global
 		{50F13BAC-6A97-4F93-B33E-3E667F43865F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50F13BAC-6A97-4F93-B33E-3E667F43865F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50F13BAC-6A97-4F93-B33E-3E667F43865F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A37962FA-55E8-4A5E-AD96-370D43F1F36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37962FA-55E8-4A5E-AD96-370D43F1F36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37962FA-55E8-4A5E-AD96-370D43F1F36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37962FA-55E8-4A5E-AD96-370D43F1F36F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CC67343-8457-4BBA-8E24-3FF67497F8D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC67343-8457-4BBA-8E24-3FF67497F8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC67343-8457-4BBA-8E24-3FF67497F8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC67343-8457-4BBA-8E24-3FF67497F8D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{50F13BAC-6A97-4F93-B33E-3E667F43865F} = {633BBA77-5B0E-4038-B605-B5C148472F55}
+		{A37962FA-55E8-4A5E-AD96-370D43F1F36F} = {0B9679CF-729B-487B-9F83-2C75084D1CFA}
+		{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD} = {0B9679CF-729B-487B-9F83-2C75084D1CFA}
+		{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA} = {0B9679CF-729B-487B-9F83-2C75084D1CFA}
+		{8CC67343-8457-4BBA-8E24-3FF67497F8D6} = {38ADA106-6D9C-492A-AF73-E025372705C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EC7D5DB-5AEE-415F-9E44-461F9AB17D3B}
