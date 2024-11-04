@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Identity;
-using WeVibe.Core.Domain.Entities;
+using WeVibe.Core.Services;
 using WeVibe.Infrastructure.Persistence;
-using WeVibe.Infrastructure.Persistence.DataContext;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddPersistenceServices(builder.Configuration);
 
 builder.Services.AddControllers();

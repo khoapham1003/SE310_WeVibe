@@ -17,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WeVibe.Core.Contracts\WeVibe.Core.Contracts.csproj" />
+    <ProjectReference Include="..\WeVibe.Core.Services\WeVibe.Core.Services.csproj" />
     <ProjectReference Include="..\WeVibe.Infrastructure.Persistence\WeVibe.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 

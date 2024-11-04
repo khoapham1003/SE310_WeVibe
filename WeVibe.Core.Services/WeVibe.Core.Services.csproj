@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeVibe.Core.Services.Abstractions\WeVibe.Core.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\WeVibe.Infrastructure.Persistence\WeVibe.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

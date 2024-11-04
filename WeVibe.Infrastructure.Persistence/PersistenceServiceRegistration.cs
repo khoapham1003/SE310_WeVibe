@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WeVibe.Core.Domain.Entities;
+using WeVibe.Core.Domain.Repositories;
 using WeVibe.Infrastructure.Persistence.DataContext;
+using WeVibe.Infrastructure.Persistence.Repositories;
 
 namespace WeVibe.Infrastructure.Persistence
 {
@@ -18,6 +20,10 @@ namespace WeVibe.Infrastructure.Persistence
             {
                 options.UseSqlServer(configuration.GetConnectionString("WeVibeDb"));
             });
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             // Register Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
