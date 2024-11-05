@@ -1,3 +1,4 @@
+using Microsoft.Extensions.FileProviders;
 using WeVibe.Core.Services;
 using WeVibe.Infrastructure.Persistence;
 
@@ -20,6 +21,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
+    RequestPath = "/static" // Optional prefix for static files
+});
 
 app.UseHttpsRedirection();
 

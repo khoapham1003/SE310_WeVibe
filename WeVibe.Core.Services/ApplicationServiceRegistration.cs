@@ -12,6 +12,7 @@ namespace WeVibe.Core.Services
         {
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
             return services;
         }
     }
