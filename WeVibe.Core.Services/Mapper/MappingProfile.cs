@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using WeVibe.Core.Contracts.Category;
 using WeVibe.Core.Contracts.Product;
+using WeVibe.Core.Contracts.ProductVariant;
 using WeVibe.Core.Domain.Entities;
 
 namespace WeVibe.Core.Services.Mapper
@@ -27,6 +28,12 @@ namespace WeVibe.Core.Services.Mapper
 
             CreateMap<UpdateProductDto, Product>()
                 .ForMember(dest => dest.Images, opt => opt.Ignore());
+            //ProductVariant Mapping Profile
+            CreateMap<ProductVariant, ProductVariantDto>()
+                .ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Product))
+                .ForMember(dest => dest.SizeName, opt => opt.MapFrom(src => src.Size.Name))
+                .ForMember(dest => dest.ColorName, opt => opt.MapFrom(src => src.Color.Name))
+                .ForMember(dest => dest.ColorHex, opt => opt.MapFrom(src => src.Color.Hex));
         }
     }
 }
