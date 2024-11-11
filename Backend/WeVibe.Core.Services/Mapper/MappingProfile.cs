@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using WeVibe.Core.Contracts.Cart;
 using WeVibe.Core.Contracts.Category;
+using WeVibe.Core.Contracts.Discount;
 using WeVibe.Core.Contracts.Product;
 using WeVibe.Core.Contracts.ProductVariant;
 using WeVibe.Core.Domain.Entities;
@@ -47,6 +48,10 @@ namespace WeVibe.Core.Services.Mapper
 
             CreateMap<UpdateCartItemDto, CartItem>()
                 .ForMember(dest => dest.UnitPrice, opt => opt.Ignore());
+            //Discount Mapping Profile
+            CreateMap<CreateDiscountDto, Discount>();
+
+            CreateMap<Discount, DiscountDto>().ReverseMap();
         }
     }
 }
