@@ -1,0 +1,16 @@
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\bin\Debug\net8.0\WeVibe.Core.Contracts.deps.json
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\bin\Debug\net8.0\WeVibe.Core.Contracts.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\bin\Debug\net8.0\WeVibe.Core.Contracts.pdb
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.Core.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.Core.Contracts.AssemblyInfoInputs.cache
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.Core.Contracts.AssemblyInfo.cs
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.Core.Contracts.csproj.CoreCompileInputs.cache
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.Core.Contracts.sourcelink.json
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.Core.Contracts.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\refint\WeVibe.Core.Contracts.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.Core.Contracts.pdb
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\ref\WeVibe.Core.Contracts.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\bin\Debug\net8.0\WeVibe.Core.Domain.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\bin\Debug\net8.0\WeVibe.Core.Domain.pdb
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.Core.Contracts.csproj.AssemblyReference.cache
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Contracts\obj\Debug\net8.0\WeVibe.C.77B4C931.Up2Date

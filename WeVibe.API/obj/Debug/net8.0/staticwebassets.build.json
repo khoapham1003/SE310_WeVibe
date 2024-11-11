@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "UV68jPvNoCOC8vLa5UGLQC32zK2zH/0MQeJswMWyKOE=",
+  "Source": "WeVibe.API",
+  "BasePath": "_content/WeVibe.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WeVibe.API\\wwwroot",
+      "Source": "WeVibe.API",
+      "ContentRoot": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\wwwroot\\",
+      "BasePath": "_content/WeVibe.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\wwwroot\\images\\products\\38ce9474-4f99-43d1-8e74-974275fd3258_download (1).jfif",
+      "SourceId": "WeVibe.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\wwwroot\\",
+      "BasePath": "_content/WeVibe.API",
+      "RelativePath": "images/products/38ce9474-4f99-43d1-8e74-974275fd3258_download (1).jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\38ce9474-4f99-43d1-8e74-974275fd3258_download (1).jfif"
+    },
+    {
+      "Identity": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\wwwroot\\images\\products\\75b1bdf9-9ad8-4280-a651-46790be12866_download.jfif",
+      "SourceId": "WeVibe.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\wwwroot\\",
+      "BasePath": "_content/WeVibe.API",
+      "RelativePath": "images/products/75b1bdf9-9ad8-4280-a651-46790be12866_download.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\75b1bdf9-9ad8-4280-a651-46790be12866_download.jfif"
+    }
+  ]
+}

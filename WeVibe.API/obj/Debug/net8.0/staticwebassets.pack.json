@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\wwwroot\\images\\products\\38ce9474-4f99-43d1-8e74-974275fd3258_download (1).jfif",
+      "PackagePath": "staticwebassets\\images\\products\\38ce9474-4f99-43d1-8e74-974275fd3258_download (1).jfif"
+    },
+    {
+      "Id": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\wwwroot\\images\\products\\75b1bdf9-9ad8-4280-a651-46790be12866_download.jfif",
+      "PackagePath": "staticwebassets\\images\\products\\75b1bdf9-9ad8-4280-a651-46790be12866_download.jfif"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WeVibe.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.WeVibe.API.props",
+      "PackagePath": "build\\WeVibe.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.WeVibe.API.props",
+      "PackagePath": "buildMultiTargeting\\WeVibe.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.WeVibe.API.props",
+      "PackagePath": "buildTransitive\\WeVibe.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

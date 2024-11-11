@@ -1,0 +1,903 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Code\\DotNetTechnology\\WeVibe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.services\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|solutionrelative:wevibe.core.services\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.infrastructure.persistence\\datacontext\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|solutionrelative:wevibe.infrastructure.persistence\\datacontext\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|solutionrelative:wevibe.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|solutionrelative:wevibe.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\category\\createcategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\category\\createcategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.services\\features\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|solutionrelative:wevibe.core.services\\features\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.services\\features\\productvariantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|solutionrelative:wevibe.core.services\\features\\productvariantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D11AABF-49A3-4C28-A719-6E5584050FC1}|WeVibe.Core.Services.Abstractions\\WeVibe.Core.Services.Abstractions.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.services.abstractions\\features\\iproductvariantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D11AABF-49A3-4C28-A719-6E5584050FC1}|WeVibe.Core.Services.Abstractions\\WeVibe.Core.Services.Abstractions.csproj|solutionrelative:wevibe.core.services.abstractions\\features\\iproductvariantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.api\\controllers\\productvariantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|solutionrelative:wevibe.api\\controllers\\productvariantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\productvariant\\updateproductvariantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\productvariant\\updateproductvariantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\productvariant\\productvariantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\productvariant\\productvariantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\repositories\\iproductvariantrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\repositories\\iproductvariantrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\productvariant\\createproductvariantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\productvariant\\createproductvariantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\productvariant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\productvariant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.services\\features\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|solutionrelative:wevibe.core.services\\features\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|solutionrelative:wevibe.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\size.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\size.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\color.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\color.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D11AABF-49A3-4C28-A719-6E5584050FC1}|WeVibe.Core.Services.Abstractions\\WeVibe.Core.Services.Abstractions.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.services.abstractions\\features\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D11AABF-49A3-4C28-A719-6E5584050FC1}|WeVibe.Core.Services.Abstractions\\WeVibe.Core.Services.Abstractions.csproj|solutionrelative:wevibe.core.services.abstractions\\features\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.infrastructure.persistence\\persistenceserviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|solutionrelative:wevibe.infrastructure.persistence\\persistenceserviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.infrastructure.persistence\\repositories\\productvariantrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|solutionrelative:wevibe.infrastructure.persistence\\repositories\\productvariantrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.infrastructure.persistence\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|solutionrelative:wevibe.infrastructure.persistence\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.infrastructure.persistence\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|solutionrelative:wevibe.infrastructure.persistence\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.infrastructure.persistence\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|solutionrelative:wevibe.infrastructure.persistence\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\productimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\productimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\productdiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\productdiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\product\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\product\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.api\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|solutionrelative:wevibe.api\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\product\\updateproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\product\\updateproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.services\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A97AAE-DED3-4CDF-9383-5959F1A3D0BD}|WeVibe.Core.Services\\WeVibe.Core.Services.csproj|solutionrelative:wevibe.core.services\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\product\\createproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\product\\createproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\repositories\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\repositories\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D11AABF-49A3-4C28-A719-6E5584050FC1}|WeVibe.Core.Services.Abstractions\\WeVibe.Core.Services.Abstractions.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.services.abstractions\\features\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D11AABF-49A3-4C28-A719-6E5584050FC1}|WeVibe.Core.Services.Abstractions\\WeVibe.Core.Services.Abstractions.csproj|solutionrelative:wevibe.core.services.abstractions\\features\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50F13BAC-6A97-4F93-B33E-3E667F43865F}|WeVibe.API\\WeVibe.API.csproj|solutionrelative:wevibe.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\category\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\category\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.contracts\\category\\updatecategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BA0E70-E7EA-40DD-BEDE-10267AC749BA}|WeVibe.Core.Contracts\\WeVibe.Core.Contracts.csproj|solutionrelative:wevibe.core.contracts\\category\\updatecategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.30062\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.31665\\UserRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.5792\\GenericRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\common\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\common\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.infrastructure.persistence\\migrations\\20241011043322_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CC67343-8457-4BBA-8E24-3FF67497F8D6}|WeVibe.Infrastructure.Persistence\\WeVibe.Infrastructure.Persistence.csproj|solutionrelative:wevibe.infrastructure.persistence\\migrations\\20241011043322_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\discount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|d:\\code\\dotnettechnology\\wevibe\\wevibe.core.domain\\entities\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A37962FA-55E8-4A5E-AD96-370D43F1F36F}|WeVibe.Core.Domain\\WeVibe.Core.Domain.csproj|solutionrelative:wevibe.core.domain\\entities\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Migrations\\20241011040932_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WeVibe.Infrastructure.Persistence\\Migrations\\20241011040932_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CategoryService.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Features\\CategoryService.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Services\\Features\\CategoryService.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Features\\CategoryService.cs",
+              "RelativeToolTip": "WeVibe.Core.Services\\Features\\CategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:28:32.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateCategoryDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Category\\CreateCategoryDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\Category\\CreateCategoryDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Category\\CreateCategoryDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\Category\\CreateCategoryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:51:10.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\appsettings.json",
+              "RelativeDocumentMoniker": "WeVibe.API\\appsettings.json",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\appsettings.json",
+              "RelativeToolTip": "WeVibe.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-10T05:25:24.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "WeVibe.API\\appsettings.Development.json",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\appsettings.Development.json",
+              "RelativeToolTip": "WeVibe.API\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-10T05:28:13.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\DataContext\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "WeVibe.Infrastructure.Persistence\\DataContext\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\DataContext\\ApplicationDbContext.cs",
+              "RelativeToolTip": "WeVibe.Infrastructure.Persistence\\DataContext\\ApplicationDbContext.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T08:13:42.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Mapper\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Services\\Mapper\\MappingProfile.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Mapper\\MappingProfile.cs",
+              "RelativeToolTip": "WeVibe.Core.Services\\Mapper\\MappingProfile.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAcwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T08:15:04.387Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProductVariantService.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Features\\ProductVariantService.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Services\\Features\\ProductVariantService.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Features\\ProductVariantService.cs",
+              "RelativeToolTip": "WeVibe.Core.Services\\Features\\ProductVariantService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAwwKsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T07:48:16.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UpdateProductVariantDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\ProductVariant\\UpdateProductVariantDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\ProductVariant\\UpdateProductVariantDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\ProductVariant\\UpdateProductVariantDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\ProductVariant\\UpdateProductVariantDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T09:37:33.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProductVariantController.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\Controllers\\ProductVariantController.cs",
+              "RelativeDocumentMoniker": "WeVibe.API\\Controllers\\ProductVariantController.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\Controllers\\ProductVariantController.cs",
+              "RelativeToolTip": "WeVibe.API\\Controllers\\ProductVariantController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAiwDwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T07:54:50.683Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IProductVariantRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Repositories\\IProductVariantRepository.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Repositories\\IProductVariantRepository.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Repositories\\IProductVariantRepository.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Repositories\\IProductVariantRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T07:41:55.833Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IProductVariantService.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services.Abstractions\\Features\\IProductVariantService.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Services.Abstractions\\Features\\IProductVariantService.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services.Abstractions\\Features\\IProductVariantService.cs",
+              "RelativeToolTip": "WeVibe.Core.Services.Abstractions\\Features\\IProductVariantService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T07:47:30.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProductVariantDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\ProductVariant\\ProductVariantDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\ProductVariant\\ProductVariantDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\ProductVariant\\ProductVariantDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\ProductVariant\\ProductVariantDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T07:52:02.087Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CreateProductVariantDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\ProductVariant\\CreateProductVariantDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\ProductVariant\\CreateProductVariantDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\ProductVariant\\CreateProductVariantDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\ProductVariant\\CreateProductVariantDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T07:50:14.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProductVariant.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\ProductVariant.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\ProductVariant.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\ProductVariant.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\ProductVariant.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T04:13:13.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Features\\ProductService.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Services\\Features\\ProductService.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Features\\ProductService.cs",
+              "RelativeToolTip": "WeVibe.Core.Services\\Features\\ProductService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAIwBQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:45:16.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "WeVibe.API\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "WeVibe.API\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T14:07:29.985Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Size.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Size.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Size.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Size.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Size.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:15:03.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Color.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Color.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Color.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Color.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Color.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:12:59.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ProductVariantRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Repositories\\ProductVariantRepository.cs",
+              "RelativeDocumentMoniker": "WeVibe.Infrastructure.Persistence\\Repositories\\ProductVariantRepository.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Repositories\\ProductVariantRepository.cs",
+              "RelativeToolTip": "WeVibe.Infrastructure.Persistence\\Repositories\\ProductVariantRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T07:44:19.81Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Repositories\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Repositories\\IProductRepository.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Repositories\\IProductRepository.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Repositories\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:22:46.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "WeVibe.Infrastructure.Persistence\\Repositories\\ProductRepository.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "WeVibe.Infrastructure.Persistence\\Repositories\\ProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:25:50.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services.Abstractions\\Features\\IProductService.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Services.Abstractions\\Features\\IProductService.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services.Abstractions\\Features\\IProductService.cs",
+              "RelativeToolTip": "WeVibe.Core.Services.Abstractions\\Features\\IProductService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:28:53.838Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Repositories\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "WeVibe.Infrastructure.Persistence\\Repositories\\GenericRepository.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Repositories\\GenericRepository.cs",
+              "RelativeToolTip": "WeVibe.Infrastructure.Persistence\\Repositories\\GenericRepository.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwCgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:16:52.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PersistenceServiceRegistration.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\PersistenceServiceRegistration.cs",
+              "RelativeDocumentMoniker": "WeVibe.Infrastructure.Persistence\\PersistenceServiceRegistration.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\PersistenceServiceRegistration.cs",
+              "RelativeToolTip": "WeVibe.Infrastructure.Persistence\\PersistenceServiceRegistration.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAuwBwAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T05:34:11.399Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Repositories\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "WeVibe.Infrastructure.Persistence\\Repositories\\CategoryRepository.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Repositories\\CategoryRepository.cs",
+              "RelativeToolTip": "WeVibe.Infrastructure.Persistence\\Repositories\\CategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:24:32.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ICategoryRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Repositories\\ICategoryRepository.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Repositories\\ICategoryRepository.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Repositories\\ICategoryRepository.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Repositories\\ICategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:21:51.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ProductImage.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\ProductImage.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\ProductImage.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\ProductImage.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\ProductImage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:08:20.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ProductDiscount.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\ProductDiscount.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\ProductDiscount.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\ProductDiscount.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\ProductDiscount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:25:04.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Product\\ProductDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\Product\\ProductDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Product\\ProductDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\Product\\ProductDto.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA/wBAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:38:40.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "WeVibe.API\\Controllers\\CategoryController.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "WeVibe.API\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAcwC0AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:41:43.649Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Product.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Product.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Product.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA3wBIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T06:59:33.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "UpdateProductDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Product\\UpdateProductDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\Product\\UpdateProductDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Product\\UpdateProductDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\Product\\UpdateProductDto.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T15:07:25.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "NotFoundException.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Exceptions\\NotFoundException.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Services\\Exceptions\\NotFoundException.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services\\Exceptions\\NotFoundException.cs",
+              "RelativeToolTip": "WeVibe.Core.Services\\Exceptions\\NotFoundException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T15:38:09.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "IGenericRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Repositories\\IGenericRepository.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Repositories\\IGenericRepository.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Repositories\\IGenericRepository.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Repositories\\IGenericRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:15:31.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ICategoryService.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services.Abstractions\\Features\\ICategoryService.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Services.Abstractions\\Features\\ICategoryService.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Services.Abstractions\\Features\\ICategoryService.cs",
+              "RelativeToolTip": "WeVibe.Core.Services.Abstractions\\Features\\ICategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:30:49.595Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "CreateProductDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Product\\CreateProductDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\Product\\CreateProductDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Product\\CreateProductDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\Product\\CreateProductDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:40:04.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\Program.cs",
+              "RelativeDocumentMoniker": "WeVibe.API\\Program.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.API\\Program.cs",
+              "RelativeToolTip": "WeVibe.API\\Program.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:50:07.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "CategoryDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Category\\CategoryDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\Category\\CategoryDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Category\\CategoryDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\Category\\CategoryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T08:17:28.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "UpdateCategoryDto.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Category\\UpdateCategoryDto.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Contracts\\Category\\UpdateCategoryDto.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Contracts\\Category\\UpdateCategoryDto.cs",
+              "RelativeToolTip": "WeVibe.Core.Contracts\\Category\\UpdateCategoryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:57:07.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.30062\\Program.cs",
+              "ToolTip": "C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.30062\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:39:51.282Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.31665\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.31665\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:23:27.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.5792\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\NhatQuang\\AppData\\Local\\Temp\\Rar$DIa8748.5792\\GenericRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T07:19:08.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Category.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Category.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Category.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Category.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:09:29.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\OrderItem.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\OrderItem.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\OrderItem.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\OrderItem.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwAcAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T08:01:05.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Common\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Common\\BaseEntity.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Common\\BaseEntity.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Common\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T06:39:17.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Order.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Order.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Order.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Order.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAgwAwAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:55:31.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "Discount.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Discount.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Discount.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Discount.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Discount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:21:53.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "20241011043322_init.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Migrations\\20241011043322_init.cs",
+              "RelativeDocumentMoniker": "WeVibe.Infrastructure.Persistence\\Migrations\\20241011043322_init.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Migrations\\20241011043322_init.cs",
+              "RelativeToolTip": "WeVibe.Infrastructure.Persistence\\Migrations\\20241011043322_init.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T04:33:22.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Cart.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Cart.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Cart.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:45:35.2Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\ApplicationUser.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\ApplicationUser.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\ApplicationUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBZwBAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:46:14.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "Transaction.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Transaction.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Transaction.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Transaction.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Transaction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T08:06:34.244Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\CartItem.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\CartItem.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\CartItem.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\CartItem.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:48:34.091Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "Address.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Address.cs",
+              "RelativeDocumentMoniker": "WeVibe.Core.Domain\\Entities\\Address.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Core.Domain\\Entities\\Address.cs",
+              "RelativeToolTip": "WeVibe.Core.Domain\\Entities\\Address.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:54:22.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "20241011040932_init.cs",
+              "DocumentMoniker": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Migrations\\20241011040932_init.cs",
+              "RelativeDocumentMoniker": "WeVibe.Infrastructure.Persistence\\Migrations\\20241011040932_init.cs",
+              "ToolTip": "D:\\Code\\DotNetTechnology\\WeVibe\\WeVibe.Infrastructure.Persistence\\Migrations\\20241011040932_init.cs",
+              "RelativeToolTip": "WeVibe.Infrastructure.Persistence\\Migrations\\20241011040932_init.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T04:09:33.07Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\bin\Debug\net8.0\WeVibe.Core.Domain.deps.json
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\bin\Debug\net8.0\WeVibe.Core.Domain.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\bin\Debug\net8.0\WeVibe.Core.Domain.pdb
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\WeVibe.Core.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\WeVibe.Core.Domain.AssemblyInfoInputs.cache
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\WeVibe.Core.Domain.AssemblyInfo.cs
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\WeVibe.Core.Domain.csproj.CoreCompileInputs.cache
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\WeVibe.Core.Domain.sourcelink.json
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\WeVibe.Core.Domain.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\refint\WeVibe.Core.Domain.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\WeVibe.Core.Domain.pdb
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\ref\WeVibe.Core.Domain.dll
+D:\Code\DotNetTechnology\WeVibe\WeVibe.Core.Domain\obj\Debug\net8.0\WeVibe.Core.Domain.csproj.AssemblyReference.cache
