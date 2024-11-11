@@ -14,6 +14,9 @@ namespace WeVibe.Core.Services
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductVariantService, ProductVariantService>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenService, TokenService>();
             return services;
         }
     }

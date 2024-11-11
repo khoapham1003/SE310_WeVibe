@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using WeVibe.Core.Contracts.Cart;
 using WeVibe.Core.Contracts.Category;
 using WeVibe.Core.Contracts.Product;
 using WeVibe.Core.Contracts.ProductVariant;
@@ -34,6 +35,18 @@ namespace WeVibe.Core.Services.Mapper
                 .ForMember(dest => dest.SizeName, opt => opt.MapFrom(src => src.Size.Name))
                 .ForMember(dest => dest.ColorName, opt => opt.MapFrom(src => src.Color.Name))
                 .ForMember(dest => dest.ColorHex, opt => opt.MapFrom(src => src.Color.Hex));
+            //Cart Mapping Profile
+            CreateMap<Cart, CartDto>()
+            .ForMember(dest => dest.CartItems, opt => opt.MapFrom(src => src.CartItems));
+
+            CreateMap<CartItem, CartItemDto>();
+
+            CreateMap<AddToCartDto, CartItem>()
+                .ForMember(dest => dest.UnitPrice, opt => opt.Ignore())
+                .ForMember(dest => dest.Discount, opt => opt.Ignore());
+
+            CreateMap<UpdateCartItemDto, CartItem>()
+                .ForMember(dest => dest.UnitPrice, opt => opt.Ignore());
         }
     }
 }
