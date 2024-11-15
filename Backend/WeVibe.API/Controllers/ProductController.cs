@@ -10,17 +10,32 @@ namespace WeVibe.API.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
 
-        [HttpGet]
+        [HttpGet("all-products")]
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await _productService.GetAllProductsAsync();
             return Ok(products);
+        }
+        [HttpGet("products-and-categories")]
+        public async Task<IActionResult> GetAllProductsAndCategories()
+        {
+            var products = await _productService.GetAllProductsAsync();
+            var categories = await _categoryService.GetAllCategoriesAsync();
+            var responseDto = new ProductsAndCategoriesDto
+            {
+                Products = products,
+                Categories = categories
+            };
+
+            return Ok(responseDto);
         }
 
         [HttpGet("{productId}")]

@@ -13,7 +13,8 @@ namespace WeVibe.Core.Services.Mapper
         public MappingProfile()
         {
             //Category Mapping Profile
-            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, CategoryDto>()
+                .ReverseMap();
             CreateMap<Category, CreateCategoryDto>()
                 .ReverseMap();
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WeVibe.Core.Contracts.Product;
 using WeVibe.Core.Domain.Entities;
+using WeVibe.Core.Domain.Repositories;
 using WeVibe.Core.Services.Abstractions.Features;
 using WeVibe.Core.Services.Exceptions;
 using WeVibe.Infrastructure.Persistence.DataContext;
@@ -11,27 +12,36 @@ namespace WeVibe.Core.Services.Features
 {
     public class ProductService : IProductService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductRepository _productRepository;
+        private readonly IProductImageRepository _productImageRepository;
         private readonly IMapper _mapper;
         private readonly string _imageFolderPath = "wwwroot/images/products";
-        public ProductService(ApplicationDbContext context, IMapper mapper)
+        public ProductService(IProductRepository productRepository, IProductImageRepository productImageRepository, IMapper mapper)
         {
-            _context = context;
+            _productRepository = productRepository;
+            _productImageRepository = productImageRepository;
             _mapper = mapper;
         }
         public async Task<IEnumerable<ProductDto>> GetAllProductsAsync()
         {
-            var products = await _context.Products
-                .Include(p => p.Images)
-                .ToListAsync();
+            var products = await _productRepository.GetAllWithCategoryAsync();
 
-            return _mapper.Map<IEnumerable<ProductDto>>(products);
+            return products.Select(product => new ProductDto
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Slug = product.Slug,
+                Images = _mapper.Map<ICollection<ProductImageDto>>(product.Images),
+                Description = product.Description,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                CategoryId = product.CategoryId,
+                CategoryName = product.Category.Name
+            });
         }
         public async Task<ProductDto> GetProductByIdAsync(int productId)
         {
-            var product = await _context.Products
-                .Include(p => p.Images)
-                .FirstOrDefaultAsync(p => p.ProductId == productId);
+            var product = await _productRepository.GetByIdAsync(productId);
 
             if (product == null)
             {
@@ -67,16 +77,14 @@ namespace WeVibe.Core.Services.Features
                 }
             }
 
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            await _productRepository.AddAsync(product);
+            await _productRepository.SaveAsync();
 
             return _mapper.Map<ProductDto>(product);
         }
         public async Task<ProductDto> UpdateProductAsync(int productId, UpdateProductDto updateProductDto)
         {
-            var product = await _context.Products
-                .Include(p => p.Images)
-                .FirstOrDefaultAsync(p => p.ProductId == productId);
+            var product = await _productRepository.GetByIdAsync(productId);
 
             if (product == null)
             {
@@ -95,7 +103,7 @@ namespace WeVibe.Core.Services.Features
                 var imagesToRemove = product.Images.Where(img => updateProductDto.ImagesToRemove.Contains(img.ProductImageId)).ToList();
                 foreach (var image in imagesToRemove)
                 {
-                    _context.ProductImages.Remove(image);
+                    await _productImageRepository.DeleteAsync(image.ProductImageId);
                 }
             }
 
@@ -118,15 +126,13 @@ namespace WeVibe.Core.Services.Features
                 }
             }
 
-            await _context.SaveChangesAsync();
+            await _productRepository.SaveAsync();
 
             return _mapper.Map<ProductDto>(product);
         }
         public async Task<string> DeleteProductAsync(int productId)
         {
-            var product = await _context.Products
-                .Include(p => p.Images)
-                .FirstOrDefaultAsync(p => p.ProductId == productId);
+            var product = await _productRepository.GetByIdAsync(productId);
 
             if (product == null)
             {
@@ -142,8 +148,8 @@ namespace WeVibe.Core.Services.Features
                 }
             }
 
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            await _productRepository.DeleteAsync(productId);
+            await _productRepository.SaveAsync();
 
             return $"Product with ID {productId} has been successfully deleted.";
         }

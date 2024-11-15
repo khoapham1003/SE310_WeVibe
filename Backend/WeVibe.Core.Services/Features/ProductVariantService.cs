@@ -1,27 +1,38 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using WeVibe.Core.Contracts.Product;
 using WeVibe.Core.Contracts.ProductVariant;
 using WeVibe.Core.Domain.Entities;
+using WeVibe.Core.Domain.Repositories;
 using WeVibe.Core.Services.Abstractions.Features;
-using WeVibe.Infrastructure.Persistence.DataContext;
 
 namespace WeVibe.Core.Services.Features
 {
     public class ProductVariantService : IProductVariantService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductVariantRepository _productVariantRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly ISizeRepository _sizeRepository;
+        private readonly IColorRepository _colorRepository;
         private readonly IMapper _mapper;
         private readonly IProductService _productService;
-        public ProductVariantService(ApplicationDbContext context, IMapper mapper, IProductService productService)
+        public ProductVariantService(
+            IProductVariantRepository productVariantRepository,
+            IProductRepository productRepository,
+            IColorRepository colorRepository,
+            ISizeRepository sizeRepository,
+            IMapper mapper,
+            IProductService productService)
         {
-            _context = context;
+            _productVariantRepository = productVariantRepository;
+            _productRepository = productRepository;
+            _colorRepository = colorRepository;
+            _sizeRepository = sizeRepository;
             _mapper = mapper;
             _productService = productService;
         }
         public async Task<ProductVariantDto> CreateAsync(CreateProductVariantDto createDto)
         {
-            var product = await _context.Products.FindAsync(createDto.ProductId);
+            var product = await _productRepository.GetByIdAsync(createDto.ProductId);
             if (product == null)
                 throw new KeyNotFoundException("Product not found");
 
@@ -29,16 +40,16 @@ namespace WeVibe.Core.Services.Features
             {
                 Name = createDto.SizeName
             };
-            _context.Sizes.Add(size);
+            await _sizeRepository.AddAsync(size);
+            await _sizeRepository.SaveAsync();
 
             var color = new Color
             {
                 Name = createDto.ColorName,
                 Hex = createDto.ColorHex
             };
-            _context.Colors.Add(color);
-
-            await _context.SaveChangesAsync();
+            await _colorRepository.AddAsync(color);
+            await _colorRepository.SaveAsync();
 
             var productVariant = new ProductVariant
             {
@@ -48,18 +59,14 @@ namespace WeVibe.Core.Services.Features
                 Quantity = createDto.Quantity
             };
 
-            _context.ProductVariants.Add(productVariant);
-            await _context.SaveChangesAsync();
+            await _productVariantRepository.AddAsync(productVariant);
+            await _productVariantRepository.SaveAsync();
 
             return _mapper.Map<ProductVariantDto>(productVariant);
         }
         public async Task<ProductVariantDto> GetProductVariantByIdAsync(int id)
         {
-            var productVariant = await _context.ProductVariants
-                .Include(pv => pv.Product)
-                .Include(pv => pv.Size)
-                .Include(pv => pv.Color)
-                .FirstOrDefaultAsync(pv => pv.ProductVariantId == id);
+            var productVariant = await _productVariantRepository.GetProductVariantByIdAsync(id);
 
             if (productVariant == null)
                 throw new KeyNotFoundException("Product variant not found");
@@ -76,11 +83,7 @@ namespace WeVibe.Core.Services.Features
         {
             var productVariantDtos = new List<ProductVariantDto>();
 
-            var productVariants = await _context.ProductVariants
-                .Include(pv => pv.Product)
-                .Include(pv => pv.Size)
-                .Include(pv => pv.Color)
-                .ToListAsync();
+            var productVariants = await _productVariantRepository.GetAllProductVariantsAsync();
             foreach (var variant in productVariants)
             {
                 var product = await _productService.GetProductByIdAsync(variant.ProductId);
@@ -94,22 +97,16 @@ namespace WeVibe.Core.Services.Features
         }
         public async Task<ProductVariantDto> UpdateProductVariantAsync(int id, UpdateProductVariantDto updateDto)
         {
-            var productVariant = await _context.ProductVariants
-                .Include(pv => pv.Product)
-                .Include(pv => pv.Size)
-                .Include(pv => pv.Color)
-                .FirstOrDefaultAsync(pv => pv.ProductVariantId == id);
+            var productVariant = await _productVariantRepository.GetProductVariantByIdAsync(id);
 
             if (productVariant == null)
             {
                 throw new KeyNotFoundException("Product variant not found");
             }
 
-            var size = await _context.Sizes
-                .FirstOrDefaultAsync(s => s.SizeId == productVariant.SizeId);
+            var size = await _sizeRepository.GetByIdAsync(productVariant.SizeId);
 
-            var color = await _context.Colors
-                .FirstOrDefaultAsync(c => c.ColorId == productVariant.ColorId);
+            var color = await _colorRepository.GetByIdAsync(productVariant.ColorId);
 
             if (size == null)
             {
@@ -127,11 +124,9 @@ namespace WeVibe.Core.Services.Features
 
             productVariant.Quantity = updateDto.Quantity;
 
-            _context.Sizes.Update(size);
-            _context.Colors.Update(color);
-            _context.ProductVariants.Update(productVariant);
-
-            await _context.SaveChangesAsync();
+            await _sizeRepository.UpdateAsync(size);
+            await _colorRepository.UpdateAsync(color);
+            await _productVariantRepository.UpdateAsync(productVariant);
 
             var updatedProduct = await _productService.GetProductByIdAsync(productVariant.ProductId);
             if (updatedProduct == null)
@@ -146,28 +141,22 @@ namespace WeVibe.Core.Services.Features
         }
         public async Task<bool> DeleteProductVariantByIdAsync(int id)
         {
-            var productVariant = await _context.ProductVariants
-                .Include(pv => pv.Product)
-                .Include(pv => pv.Size)
-                .Include(pv => pv.Color)
-                .FirstOrDefaultAsync(pv => pv.ProductVariantId == id);
+            var productVariant = await _productVariantRepository.GetProductVariantByIdAsync(id);
 
             if (productVariant == null)
             {
                 throw new KeyNotFoundException("Product variant not found");
             }
 
-            var size = await _context.Sizes.FirstOrDefaultAsync(s => s.SizeId == productVariant.SizeId);
-            var color = await _context.Colors.FirstOrDefaultAsync(c => c.ColorId == productVariant.ColorId);
+            var size = await _sizeRepository.GetByIdAsync(productVariant.SizeId);
+            var color = await _colorRepository.GetByIdAsync(productVariant.ColorId);
 
-            _context.ProductVariants.Remove(productVariant);
+            await _productVariantRepository.DeleteAsync(productVariant.ProductId);
 
-            _context.Sizes.Remove(size);
-            _context.Colors.Remove(color);
+            await _sizeRepository.DeleteAsync(size.SizeId);
+            await _colorRepository.DeleteAsync(color.ColorId);
 
-            var result = await _context.SaveChangesAsync();
-
-            return result > 0;
+            return true;
         }
 
     }
