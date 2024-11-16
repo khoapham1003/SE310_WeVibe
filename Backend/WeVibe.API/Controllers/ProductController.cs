@@ -99,5 +99,18 @@ namespace WeVibe.API.Controllers
                 return NotFound(ex.Message);
             }
         }
+        [HttpGet("product-detail-{productId}")]
+        public async Task<IActionResult> ProductDetail(int productId)
+        {
+            try
+            {
+                var product = await _productService.GetProductDetailByIdAsync(productId);
+                return Ok(product);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

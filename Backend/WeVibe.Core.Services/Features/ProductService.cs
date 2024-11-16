@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WeVibe.Core.Contracts.Product;
+using WeVibe.Core.Contracts.ProductVariant;
 using WeVibe.Core.Domain.Entities;
 using WeVibe.Core.Domain.Repositories;
 using WeVibe.Core.Services.Abstractions.Features;
 using WeVibe.Core.Services.Exceptions;
-using WeVibe.Infrastructure.Persistence.DataContext;
 
 namespace WeVibe.Core.Services.Features
 {
@@ -41,7 +39,7 @@ namespace WeVibe.Core.Services.Features
         }
         public async Task<ProductDto> GetProductByIdAsync(int productId)
         {
-            var product = await _productRepository.GetByIdAsync(productId);
+            var product = await _productRepository.GetProductByIdAsync(productId);
 
             if (product == null)
             {
@@ -153,5 +151,42 @@ namespace WeVibe.Core.Services.Features
 
             return $"Product with ID {productId} has been successfully deleted.";
         }
+        public async Task<ProductDetailDto> GetProductDetailByIdAsync(int productId)
+        {
+            var product = await _productRepository.GetProductDetailAsync(productId);
+
+            if (product == null)
+            {
+                throw new NotFoundException($"Product with ID {productId} not found.");
+            }
+
+            var productDetailDto = new ProductDetailDto
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Slug = product.Slug,
+                Description = product.Description,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                CategoryId = product.CategoryId,
+                CategoryName = product.Category.Name,
+                Images = product.Images.Select(img => new ProductImageDto
+                {
+                    ProductImageId = img.ProductImageId,
+                    ProductId = img.ProductId,
+                    ImagePath = img.ImagePath
+                }).ToList(),
+                ProductVariants = product.ProductVariants.Select(pv => new ProductVariantDto
+                {
+                    ProductVariantId = pv.ProductVariantId,
+                    SizeName = pv.Size.Name,
+                    ColorName = pv.Color.Name,
+                    Quantity = pv.Quantity
+                }).ToList()
+            };
+
+            return productDetailDto;
+        }
+
     }
 }

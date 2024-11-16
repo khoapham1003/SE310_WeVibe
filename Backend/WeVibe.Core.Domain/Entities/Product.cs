@@ -15,6 +15,5 @@ namespace WeVibe.Core.Domain.Entities
         public Category Category { get; set; }
         public ICollection<ProductVariant> ProductVariants { get; set; }
         public ICollection<ProductDiscount> ProductDiscounts { get; set; } = new List<ProductDiscount>();
-
     }
 }
