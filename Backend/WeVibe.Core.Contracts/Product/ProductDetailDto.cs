@@ -1,8 +1,8 @@
-﻿using WeVibe.Core.Domain.Entities;
+﻿using WeVibe.Core.Contracts.ProductVariant;
 
 namespace WeVibe.Core.Contracts.Product
 {
-    public class ProductDto
+    public class ProductDetailDto
     {
         public int ProductId { get; set; }
         public string Name { get; set; }
@@ -13,11 +13,6 @@ namespace WeVibe.Core.Contracts.Product
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-    }
-    public class ProductImageDto
-    {
-        public int ProductImageId { get; set; }
-        public int ProductId { get; set; }
-        public string ImagePath { get; set; }
+        public ICollection<ProductVariantDto> ProductVariants { get; set; } = new List<ProductVariantDto>();
     }
 }
