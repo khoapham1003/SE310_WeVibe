@@ -2,6 +2,7 @@ import { Fragment, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { publicRoutes, privateRoutes } from "./index";
 import DefaultLayout from "../Layouts/DefaultLayout";
+import { message } from "antd";
 
 function AppRoutes() {
   useEffect(() => {}, []);
@@ -34,6 +35,18 @@ function AppRoutes() {
       }
     }
 
+    return false;
+  };
+  const isAdmin = () => {
+    const accessToken = getCookie("accessToken");
+    if (accessToken) {
+      const tokenParts = accessToken.split(".");
+      if (tokenParts.length !== 3) {
+        throw new Error("Invalid token format");
+      }
+      const decodedToken = JSON.parse(atob(tokenParts[1]));
+      return decodedToken && (decodedToken.role === 'admin') === true;
+    }
     return false;
   };
   console.log("Is user authenticated:", isUserAuthenticated());
@@ -80,13 +93,15 @@ function AppRoutes() {
               path={route.path}
               element={
                 isUserAuthenticated() ? (
-                  <Layout>
-                    <Page />
-                  </Layout>
+                  route.path === "/admin" && !isAdmin() ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  )
                 ) : (
-                  <>
-                    <Navigate to="/sign_in" />
-                  </>
+                  <Navigate to="/sign_in" />
                 )
               }
             />
