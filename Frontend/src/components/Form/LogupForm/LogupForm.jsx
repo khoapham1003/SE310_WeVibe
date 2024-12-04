@@ -7,59 +7,60 @@ const { Title } = Typography;
 
 function Logup() {
   const navigate = useNavigate();
-  const [lastname, setLastname] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [isSuccess, setSuccess] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
 
   useEffect(() => {}, []);
 
   const onFinish = (values) => {
     handleLogUp();
-    setSuccess(true);
     console.log("Success:", values);
   };
 
   const onFinishFailed = (errorInfo) => {
-    setSuccess(false);
     message.error(`Xin vui lòng nhập đầy đủ thông tin!`);
     console.log("Failed:", errorInfo);
   };
 
-  console.log("isSuccess:", isSuccess);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === "lastname") {
-      setLastname(value);
-    } else if (name === "firstname") {
-      setFirstname(value);
-    } else if (name === "username") {
-      setUsername(value);
-    } else if (name === "password") {
-      setPassword(value);
-    } else if (name === "confirmpassword") {
-      setConfirmpassword(value);
+    if (name === "firstName") {
+      setFirstName(value);
+    } else if (name === "middleName") {
+      setMiddleName(value);
+    } else if (name === "lastName") {
+      setLastName(value);
+    } else if (name === "phoneNumber") {
+      setPhoneNumber(value);
     } else if (name === "email") {
       setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    } else if (name === "confirmPassword") {
+      setConfirmPassword(value);
     }
   };
 
   const handleLogUp = async () => {
     try {
       const requestBody = {
-        sUser_firstname: firstname,
-        sUser_lastname: lastname,
-        sUser_email: email,
-        sUser_username: username,
-        sUser_password: password,
-        sUser_confirmpassword: confirmpassword,
+        firstName,
+        middleName,
+        lastName,
+        phoneNumber,
+        email,
+        password,
+        confirmPassword,
       };
+      console.log("Failed:", requestBody);
 
-      const response = await fetch("https://localhost:7139/api/User/register", {
+      const response = await fetch("http://localhost:3000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,18 +68,9 @@ function Logup() {
         body: JSON.stringify(requestBody),
       });
 
-      console.log("Response:", response);
-      console.log("requestBody:", requestBody);
-
       if (!response.ok) {
-        const errorResponse = await response.json();
-
-        if (errorResponse.errors) {
-          const usernameError = errorResponse.errors.sUser_username[0];
-          message.error(`Đăng ký tài khoản thất bại: ${usernameError}`);
-        } else {
-          message.error("Đăng ký tài khoản thất bại. Hãy thử lại sau!");
-        }
+        message.error("Đăng ký tài khoản thất bại. Hãy thử lại sau!");
+        message.error(response.json)
       } else {
         message.success(`Đăng ký tài khoản thành công!`);
         navigate(`/sign_in`);
@@ -93,192 +85,66 @@ function Logup() {
       <Form
         layout="vertical"
         className="logup_form"
-        initialValues={{
-          remember: true,
-        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Typography
-          className="title_container"
-          style={{
-            fontWeight: "bolder",
-            fontSize: "3vh",
-            margin: "0px",
-          }}
-        >
-          Đăng ký
-        </Typography>
-        <div className="divide_into_2cols">
-          <Form.Item
-            className="no_margin"
-            label={
-              <span className="label">
-                {" "}
-                <span style={{ color: "red" }}>* </span>Họ
-              </span>
-            }
-            name="lastname"
-            rules={[
-              {
-                validator: (_, value) => {
-                  if (!value) {
-                    return Promise.reject("Xin vui lòng nhập Họ!");
-                  }
-                  if (/^[^0-9]+$/i.test(value)) {
-                    return Promise.resolve();
-                  } else {
-                    return Promise.reject("Họ không thể chứa các ký tự số!");
-                  }
-                },
-              },
-            ]}
-          >
-            <Input
-              style={{ height: "3.6vh", fontSize: "1.8vh" }}
-              placeholder="Họ"
-              name="lastname"
-              value={lastname}
-              onChange={handleInputChange}
-            />
-          </Form.Item>
-          <Form.Item
-            className="no_margin"
-            label={
-              <span className="label">
-                {" "}
-                <span style={{ color: "red" }}>* </span>Tên
-              </span>
-            }
-            name="firstname"
-            rules={[
-              {
-                validator: (_, value) => {
-                  if (!value) {
-                    return Promise.reject("Xin vui lòng nhập Tên!");
-                  }
-                  if (/^[^0-9]+$/i.test(value)) {
-                    return Promise.resolve();
-                  } else {
-                    return Promise.reject("Tên không thể chứa các ký tự số!");
-                  }
-                },
-              },
-            ]}
-          >
-            <Input
-              style={{ height: "3.6vh", fontSize: "1.8vh" }}
-              placeholder="Tên"
-              name="firstname"
-              value={firstname}
-              onChange={handleInputChange}
-            />
-          </Form.Item>
-        </div>
+        <Typography className="title_container">Đăng ký</Typography>
+
         <Form.Item
-          className="no_margin"
-          label={
-            <span className="label">
-              {" "}
-              <span style={{ color: "red" }}>* </span>Tên đăng nhập
-            </span>
-          }
-          name="username"
-          rules={[
-            {
-              validator: (_, value) => {
-                if (!value) {
-                  return Promise.reject("Xin vui lòng nhập Tên đăng nhập!");
-                }
-                if (value.length < 6) {
-                  return Promise.reject(
-                    "Tên đăng nhập phải chứa ít nhất 6 kí tự!"
-                  );
-                } else if (/^[^0-9][a-zA-Z0-9]+$/.test(value)) {
-                  return Promise.resolve();
-                } else {
-                  return Promise.reject("Kí tự đầu không được là chữ số!");
-                }
-              },
-            },
-          ]}
+          label="Họ"
+          name="lastName"
+          rules={[{ required: true, message: "Xin vui lòng nhập Họ!" }]}
         >
-          <Input
-            style={{ height: "3.6vh", fontSize: "1.8vh" }}
-            placeholder="Tên đăng nhập"
-            name="username"
-            value={username}
-            onChange={handleInputChange}
-          />
+          <Input name="lastName" value={lastName} onChange={handleInputChange} />
         </Form.Item>
 
         <Form.Item
-          className="no_margin"
-          label={
-            <span className="label">
-              {" "}
-              <span style={{ color: "red" }}>* </span>Mật khẩu
-            </span>
-          }
+          label="Tên lót"
+          name="middleName"
+          rules={[{ required: true, message: "Xin vui lòng nhập Tên lót!" }]}
+        >
+          <Input name="middleName" value={middleName} onChange={handleInputChange} />
+        </Form.Item>
+
+        <Form.Item
+          label="Tên"
+          name="firstName"
+          rules={[{ required: true, message: "Xin vui lòng nhập Tên!" }]}
+        >
+          <Input name="firstName" value={firstName} onChange={handleInputChange} />
+        </Form.Item>
+
+        <Form.Item
+          label="Số điện thoại"
+          name="phoneNumber"
+          rules={[{ required: true, message: "Xin vui lòng nhập Số điện thoại!" }]}
+        >
+          <Input name="phoneNumber" value={phoneNumber} onChange={handleInputChange} />
+        </Form.Item>
+
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            { type: "email", message: "Đầu vào không phải là địa chỉ email hợp lệ!" },
+            { required: true, message: "Xin vui lòng nhập Email!" },
+          ]}
+        >
+          <Input name="email" value={email} onChange={handleInputChange} />
+        </Form.Item>
+
+        <Form.Item
+          label="Mật khẩu"
           name="password"
-          rules={[
-            {
-              validator: (_, value) => {
-                if (!value) {
-                  return Promise.reject("Xin vui lòng nhập Mật khẩu!");
-                }
-
-                if (value.length < 8) {
-                  return Promise.reject("Mật khẩu phải chứa ít nhất 8 kí tự!");
-                }
-
-                if (!/[A-Z]/.test(value)) {
-                  return Promise.reject(
-                    "Mật khẩu phải chứa tối thiểu 1 ký tự in hoa!"
-                  );
-                }
-
-                if (!/[a-z]/.test(value)) {
-                  return Promise.reject(
-                    "Mật khẩu phải chứa tối thiểu 1 ký tự thường!"
-                  );
-                }
-
-                if (!/\d/.test(value)) {
-                  return Promise.reject(
-                    "Mật khẩu phải chứa tối thiểu 1 ký tự số!"
-                  );
-                }
-
-                if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-                  return Promise.reject(
-                    "Mật khẩu phải chứa tối thiểu 1 ký tự đặc biệt!"
-                  );
-                }
-
-                return Promise.resolve();
-              },
-            },
-          ]}
+          rules={[{ required: true, message: "Xin vui lòng nhập Mật khẩu!" }]}
         >
-          <Input.Password
-            style={{ height: "3.6vh", fontSize: "1.8vh" }}
-            placeholder="Mật khẩu"
-            name="password"
-            value={password}
-            onChange={handleInputChange}
-          />
+          <Input.Password name="password" value={password} onChange={handleInputChange} />
         </Form.Item>
+
         <Form.Item
-          className="no_margin"
-          label={
-            <span className="label">
-              {" "}
-              <span style={{ color: "red" }}>* </span>Xác nhận mật khẩu
-            </span>
-          }
-          name="confirmpassword"
+          label="Xác nhận mật khẩu"
+          name="confirmPassword"
           dependencies={["password"]}
           hasFeedback
           rules={[
@@ -290,72 +156,21 @@ function Logup() {
                 if (getFieldValue("password") === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject(
-                  new Error("Mật khẩu mới mà bạn vừa nhập không khớp!")
-                );
+                return Promise.reject("Mật khẩu mới không khớp!");
               },
             }),
           ]}
         >
           <Input.Password
-            style={{ height: "3.6vh", fontSize: "1.8vh" }}
-            placeholder="Xác nhận mật khẩu"
-            name="confirmpassword"
-            value={confirmpassword}
-            onChange={handleInputChange}
-          />
-        </Form.Item>
-        <Form.Item
-          className="no_margin"
-          label={
-            <span className="label">
-              {" "}
-              <span style={{ color: "red" }}>* </span>Email
-            </span>
-          }
-          name="email"
-          rules={[
-            {
-              type: "email",
-              message: "Đầu vào không phải là địa chỉ email hợp lệ!",
-            },
-            {
-              validator: (_, value) => {
-                if (!value) {
-                  return Promise.reject("Xin vui lòng nhập Email!");
-                }
-              },
-            },
-          ]}
-        >
-          <Input
-            style={{ height: "3.6vh", fontSize: "1.8vh" }}
-            placeholder="Email"
-            name="email"
-            value={email}
+            name="confirmPassword"
+            value={confirmPassword}
             onChange={handleInputChange}
           />
         </Form.Item>
 
-        <Form.Item className="no_margin button_container">
-          <ConfigProvider
-            theme={{
-              token: {
-                colorBorder: "none",
-              },
-            }}
-          >
-            <Button
-              className="button"
-              block
-              type="default"
-              htmlType="submit"
-              style={{
-                height: "5vh",
-                fontSize: "2vh",
-              }}
-              onClick={handleLogUp}
-            >
+        <Form.Item>
+          <ConfigProvider theme={{ token: { colorBorder: "none" } }}>
+            <Button block type="default" htmlType="submit">
               Đăng ký
             </Button>
           </ConfigProvider>

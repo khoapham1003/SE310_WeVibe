@@ -9,7 +9,18 @@ function CheckoutPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [items, setItems] = useState([]);
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState({
+    lastName: "L",
+    middleName: "L",
+    firstName: "L",
+    phoneNumber: "0123456789",
+    email: "t@gmail.com", //
+    line1: "1",
+    line2: "1",
+    city: "1",
+    province: "1",
+    country: "1",
+  });
   const [promotionalCode, setPromotionalCode] = useState("");
   const [voucherDiscount, setVoucherDiscount] = useState(0);
   const [shippingFee, setShippingFee] = useState(30000);
@@ -31,12 +42,13 @@ function CheckoutPage() {
   const orderId = localStorage.getItem("orderId");
   const jwtToken = getCookie("accessToken");
   const userId = getCookie("userid");
+  const cartId = getCookie("CartId");
 
   useEffect(() => {
     const fetchCheckOutData = async () => {
       try {
         const response = await fetch(
-          `https://localhost:7139/api/Order/${orderId}`,
+          `http://localhost:3000/order-item/orderdata/${orderId}`,
           {
             method: "GET",
             headers: {
@@ -52,8 +64,7 @@ function CheckoutPage() {
 
         const data = await response.json();
         console.log(data);
-        setItems(data.lOrder_items);
-        setOrder(data);
+        setItems(data);
         return data;
       } catch (error) {
         console.error("Error fetching product data:", error);
@@ -62,55 +73,26 @@ function CheckoutPage() {
     fetchCheckOutData();
   }, []);
 
-  const handleCheckVoucher = async () => {
-    try {
-      const apiUrl = `https://localhost:7139/api/PromotionalCode/checkcode?sPromotionalCode_code=${promotionalCode}&gUser_id=${userId}`;
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwtToken}`,
-        },
-      });
-
-      if (!response.ok) {
-        try {
-          const responseBody = await response.clone().text();
-          const errorResponse = JSON.parse(responseBody);
-          if (
-            response.status === 400 &&
-            errorResponse.errors &&
-            errorResponse.errors.sPromotionalCode_code
-          ) {
-            message.error("Hãy nhập vào mã giảm giá");
-          } else {
-            const error = await response.text();
-            message.error(`Xác thực mã không thành công: ${error}`);
-          }
-        } catch (parseError) {
-          const error = await response.text();
-          message.error(`${error}`);
-        }
-        setVoucherDiscount(0);
-      } else {
-        const data = await response.json();
-        console.log(data);
-        setVoucherDiscount(data.iPromotionalCode_discount_rate);
-        message.success("Áp dụng mã giảm giá thành công!");
-        console.log(voucherDiscount);
-        setisCheck(true);
-      }
-    } catch (error) {
-      message.error("Mã giảm giá không tồn tại!");
-      console.error("Cannot check voucher:", error);
-    }
-  };
-
   const calculateTotalPrice = () => {
     return items.reduce(
-      (total, item) => total + item.vProduct_price * item.iProduct_amount,
+      (total, item) =>
+        total + item.productVariant.product.price * item.quantity,
       0
     );
+  };
+
+  const calculateTotalDiscount = () => {
+    let totalDiscount = 0;
+    items.forEach((item) => {
+      if (item.productVariant.product.discount > 0) {
+        totalDiscount +=
+          (item.productVariant.product.price *
+            item.quantity *
+            item.productVariant.product.discount) /
+          100;
+      }
+    });
+    return totalDiscount;
   };
 
   let totalPrice = calculateTotalPrice();
@@ -118,27 +100,42 @@ function CheckoutPage() {
   const calculateTotalPayment = () => {
     totalPrice *= 1 - voucherDiscount / 100;
     totalPrice += shippingFee;
+    totalPrice -= calculateTotalDiscount();
     return totalPrice;
   };
 
   const handleConfirmPayment = async () => {
     try {
       const data = {
-        iOrder_id: orderId,
-        sOrder_name_receiver: order.sOrder_name_receiver,
-        sOrder_phone_receiver: order.sOrder_phone_receiver,
-        sOrder_address_receiver: order.sOrder_address_receiver,
-        sPromotionalCode_code: promotionalCode,
+        lastName: order.lastName,
+        middleName: order.middleName,
+        firstName: order.firstName,
+        phoneNumber: order.phoneNumber,
+        email: order.email,
+        line1: order.line1,
+        line2: order.line2,
+        city: order.city,
+        province: order.province,
+        country: order.country,
+        status: "PENDING",
+        subTotal: totalPrice,
+        totalDiscount: calculateTotalDiscount(),
+        shippingFee: shippingFee,
+        grandTotal: calculateTotalPayment(),
       };
       console.log(data);
-      const response = await fetch("https://localhost:7139/api/Order/buy", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwtToken}`,
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `http://localhost:3000/orders/${cartId}/${orderId}/complete`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwtToken}`,
+
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       console.log("Response:", response);
 
@@ -191,30 +188,100 @@ function CheckoutPage() {
             </List.Item>
             <List.Item>
               <div>
-                Tên người dùng:
+                Họ:
                 <Input
-                  name="sOrder_name_receiver"
-                  value={order.sOrder_name_receiver}
+                  name="lastName"
+                  value={order.lastName}
                   onChange={handleInputChange}
                 />
               </div>
             </List.Item>
             <List.Item>
               <div>
-                Phone:{" "}
+                Tên đệm:
                 <Input
-                  name="sOrder_phone_receiver"
-                  value={order.sOrder_phone_receiver}
+                  name="middleName"
+                  value={order.middleName}
                   onChange={handleInputChange}
                 />
               </div>
             </List.Item>
             <List.Item>
               <div>
-                Địa chỉ:{" "}
+                Tên:
                 <Input
-                  name="sOrder_address_receiver"
-                  value={order.sOrder_address_receiver}
+                  name="firstName"
+                  value={order.firstName}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </List.Item>
+            <List.Item>
+              <div>
+                Số điện thoại:
+                <Input
+                  name="phoneNumber"
+                  value={order.phoneNumber}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </List.Item>
+            <List.Item>
+              <div>
+                Email:
+                <Input
+                  name="email"
+                  value={order.email}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </List.Item>
+            <List.Item>
+              <div>
+                Địa chỉ 1:
+                <Input
+                  name="line1"
+                  value={order.line1}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </List.Item>
+            <List.Item>
+              <div>
+                Địa chỉ 2 (tùy chọn):
+                <Input
+                  name="line2"
+                  value={order.line2}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </List.Item>
+            <List.Item>
+              <div>
+                Thành phố:
+                <Input
+                  name="city"
+                  value={order.city}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </List.Item>
+            <List.Item>
+              <div>
+                Tỉnh:
+                <Input
+                  name="province"
+                  value={order.province}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </List.Item>
+            <List.Item>
+              <div>
+                Quốc gia:
+                <Input
+                  name="country"
+                  value={order.country}
                   onChange={handleInputChange}
                 />
               </div>
@@ -238,7 +305,7 @@ function CheckoutPage() {
         </div>
         <div className="cop_cartlist_item">
           {items.map((item) => (
-            <Card className="cop_item_cart" key={item.iCart_id}>
+            <Card className="cop_item_cart" key={item._id}>
               <Row align="middle">
                 <Col md={2} offset={1}>
                   <Image
@@ -246,68 +313,27 @@ function CheckoutPage() {
                       height: 80,
                       width: 80,
                     }}
-                    src={
-                      item.sImage_path == null
-                        ? require(`../../assets/user-content/img_default.webp`)
-                        : require(`../../assets/user-content/${item.sImage_path}`)
-                    }
-                    alt={item.sProduct_name}
+                    alt={item.productVariant.product.title}
+                    src={item.productVariant.product.picture}
                   />
                 </Col>
                 <Col md={8}>
-                  <span>{item.sProduct_name}</span>
+                  <span>{item.productVariant.product.title}</span>
                 </Col>
                 <Col md={3} offset={1}>
-                  <span>{item.vProduct_price}đ</span>
+                  <span>{item.productVariant.product.price}đ</span>
                 </Col>
                 <Col md={3} offset={1}>
-                  <span>{item.iProduct_amount}</span>
+                  <span>{item.quantity}</span>
                 </Col>
                 <Col md={3} offset={1}>
                   <span className="cop_item_price">
-                    {item.vProduct_price * item.iProduct_amount}đ
+                    {item.productVariant.product.price * item.quantity}đ
                   </span>
                 </Col>
               </Row>
             </Card>
           ))}
-        </div>
-        <div className="cop_voucher">
-          <List>
-            <List.Item>
-              <h2>Voucher</h2>
-            </List.Item>
-            <List.Item>
-              <Input
-                value={promotionalCode}
-                onChange={(e) => {
-                  setPromotionalCode(e.target.value);
-                  setisCheck(false);
-                }}
-                disabled={isApply}
-              />
-            </List.Item>
-            <List.Item
-              style={{ display: "flex", justifyContent: "flex-start" }}
-            >
-              <Button
-                className="cop_button1"
-                onClick={handleCheckVoucher}
-                disabled={isApply}
-                style={{ width: "120px" }}
-              >
-                Check Code
-              </Button>
-              <Button
-                className="cop_button2"
-                onClick={handleApplyVoucher}
-                disabled={isApply}
-                style={{ width: "120px" }}
-              >
-                Áp dụng
-              </Button>
-            </List.Item>
-          </List>
         </div>
         <div className="cop_checkout_info">
           <List>
@@ -321,6 +347,9 @@ function CheckoutPage() {
               <span>Phí vận chuyển: {shippingFee}đ</span>
             </List.Item>
             <List.Item>
+              <span>Tổng giảm giá: {calculateTotalDiscount()}đ</span>
+            </List.Item>
+            <List.Item>
               <span style={{ fontWeight: "500", fontStyle: "italic" }}>
                 Tổng thanh toán: {calculateTotalPayment()}đ
               </span>
@@ -331,14 +360,18 @@ function CheckoutPage() {
                 style={{ width: "150px" }}
                 onClick={() => {
                   if (
-                    order.sOrder_name_receiver &&
-                    order.sOrder_phone_receiver &&
-                    order.sOrder_address_receiver
+                    order.firstName &&
+                    order.middleName &&
+                    order.lastName &&
+                    order.line1 &&
+                    order.line2 &&
+                    order.email &&
+                    order.phoneNumber &&
+                    order.city &&
+                    order.country &&
+                    order.province
                   ) {
-                    if (
-                      order.sOrder_phone_receiver.length !== 10 ||
-                      order.sOrder_phone_receiver[0] !== "0"
-                    ) {
+                    if (order.phoneNumber.length !== 10 || order.phoneNumber[0] !== "0") {
                       message.error(
                         "Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0"
                       );
