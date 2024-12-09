@@ -16,7 +16,7 @@ const SearchPage = () => {
         setLoading(true);
 
         const response = await fetch(
-          `http://localhost:3000/product/get-all?page=0&limit=4&filter=name&filter=${searchValue}`
+          `http://localhost:7180/product/get-all?page=0&limit=4&filter=name&filter=${searchValue}`
         );
 
         if (!response.ok) {

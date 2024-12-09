@@ -52,7 +52,7 @@ function ForgotPassword() {
         Password: password,
         confirmPassword: confirmpassword,
       };
-      const apiUrl = `http://localhost:3000/auth/forgotPassword`;
+      const apiUrl = `http://localhost:7180/auth/forgotPassword`;
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -111,7 +111,10 @@ function ForgotPassword() {
           }
           name="email"
           rules={[
-            { type: "email", message: "Đầu vào không phải là địa chỉ email hợp lệ!" },
+            {
+              type: "email",
+              message: "Đầu vào không phải là địa chỉ email hợp lệ!",
+            },
             { required: true, message: "Xin vui lòng nhập Email!" },
           ]}
         >
@@ -144,7 +147,10 @@ function ForgotPassword() {
               pattern: /[a-z]/,
               message: "Mật khẩu phải chứa tối thiểu 1 ký tự thường!",
             },
-            { pattern: /\d/, message: "Mật khẩu phải chứa tối thiểu 1 ký tự số!" },
+            {
+              pattern: /\d/,
+              message: "Mật khẩu phải chứa tối thiểu 1 ký tự số!",
+            },
             {
               pattern: /[!@#$%^&*(),.?":{}|<>]/,
               message: "Mật khẩu phải chứa tối thiểu 1 ký tự đặc biệt!",

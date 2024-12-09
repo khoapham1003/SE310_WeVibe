@@ -48,7 +48,7 @@ function CheckoutPage() {
     const fetchCheckOutData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/order-item/orderdata/${orderId}`,
+          `http://localhost:7180/order-item/orderdata/${orderId}`,
           {
             method: "GET",
             headers: {
@@ -125,13 +125,12 @@ function CheckoutPage() {
       };
       console.log(data);
       const response = await fetch(
-        `http://localhost:3000/orders/${cartId}/${orderId}/complete`,
+        `http://localhost:7180/orders/${cartId}/${orderId}/complete`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${jwtToken}`,
-
           },
           body: JSON.stringify(data),
         }
@@ -371,7 +370,10 @@ function CheckoutPage() {
                     order.country &&
                     order.province
                   ) {
-                    if (order.phoneNumber.length !== 10 || order.phoneNumber[0] !== "0") {
+                    if (
+                      order.phoneNumber.length !== 10 ||
+                      order.phoneNumber[0] !== "0"
+                    ) {
                       message.error(
                         "Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0"
                       );

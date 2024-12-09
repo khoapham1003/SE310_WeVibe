@@ -41,7 +41,7 @@ function CartPage() {
       }
 
       const response = await fetch(
-        `http://localhost:3000/cartitem/get-cart-data/${cartId}`,
+        `http://localhost:7180/api/Cart/user/${userId}`,
         {
           method: "GET",
           headers: {
@@ -73,7 +73,7 @@ function CartPage() {
         );
       }
       const response = await fetch(
-        `http://localhost:3000/cartitem/delete-cartitem/${cartItemId}`,
+        `http://localhost:7180/api/Cart/remove/${cartItemId}`,
         {
           method: "DELETE",
           headers: {
@@ -105,17 +105,14 @@ function CartPage() {
         totalDiscount: totalDiscount,
       };
 
-      const response = await fetch(
-        `http://localhost:3000/orders/create-order/${userId}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${jwtToken}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        }
-      );
+      const response = await fetch(`http://localhost:7180/api/Cart`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
 
       console.log("Response:", response);
 
@@ -158,24 +155,21 @@ function CartPage() {
       );
       const selectQuantity = items.map((item) => item.quantity);
       const requestData = selectedVIds.map((productVID, index) => ({
-        orderID: orderId,            // Use the same orderId for each item
+        orderID: orderId, // Use the same orderId for each item
         productVID: productVID,
         price: selectedPrices[index],
         discount: selectedDiscount[index],
-        quantity: selectQuantity[index]
+        quantity: selectQuantity[index],
       }));
       console.log(requestData);
-      const response = await fetch(
-        `http://localhost:3000/order-item/create-orderitems`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`,
-          },
-          body: JSON.stringify(requestData),
-        }
-      );
+      const response = await fetch(`http://localhost:7180/api/Cart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        body: JSON.stringify(requestData),
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -206,7 +200,7 @@ function CartPage() {
       };
       console.log("Request Data:", requestData);
       const response = await fetch(
-        `http://localhost:3000/cartitem/update-cartitem/${itemId}`,
+        `http://localhost:7180/cartitem/update-cartitem/${itemId}`,
         {
           method: "PATCH",
           headers: {

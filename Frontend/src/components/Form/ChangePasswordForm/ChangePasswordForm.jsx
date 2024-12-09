@@ -49,7 +49,7 @@ function ChangePassword() {
 
   const handleChange = async () => {
     try {
-      const apiUrl = `http://localhost:3000/user/change-password/${userId}`;
+      const apiUrl = `http://localhost:7180/user/change-password/${userId}`;
 
       const data = {
         Password: password,
