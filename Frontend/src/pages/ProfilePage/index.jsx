@@ -50,7 +50,7 @@ function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const apiUrl = `http://localhost:3000/user/get-user/${userId}`;
+        const apiUrl = `http://localhost:7180/user/get-user/${userId}`;
         console.log(apiUrl);
 
         const response = await fetch(apiUrl, {
@@ -97,7 +97,7 @@ function ProfilePage() {
       };
       console.log(data);
       const response = await fetch(
-        `http://localhost:3000/user/updater-user/${userId}`,
+        `http://localhost:7180/user/updater-user/${userId}`,
         {
           method: "PATCH",
           headers: {
@@ -197,7 +197,7 @@ function ProfilePage() {
       console.log(data);
 
       const response = await fetch(
-        `http://localhost:3000/user/change-password/${userId}`,
+        `http://localhost:7180/user/change-password/${userId}`,
         {
           method: "PATCH",
           headers: {
@@ -238,7 +238,7 @@ function ProfilePage() {
 
   useEffect(() => {
     const fetchHistoryOrder = async () => {
-      const apiUrl = `http://localhost:3000/order/get-all-order/${userId}`;
+      const apiUrl = `http://localhost:7180/order/get-all-order/${userId}`;
       try {
         const response = await fetch(apiUrl, {
           method: "GET",
@@ -418,30 +418,30 @@ function ProfilePage() {
               />
             </Form.Item>
             <Form.Item
-          className="no_margin"
-          label={
-            <span className="label">
-              <span style={{ color: "red" }}>* </span>Xác nhận mật khẩu
-            </span>
-          }
-          name="confirmpassword"
-          dependencies={["newpassword"]}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: "Xin vui lòng nhập Xác nhận mật khẩu!",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("newpassword") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error("Mật khẩu không khớp!"));
-              },
-            }),
-          ]}
-        >
+              className="no_margin"
+              label={
+                <span className="label">
+                  <span style={{ color: "red" }}>* </span>Xác nhận mật khẩu
+                </span>
+              }
+              name="confirmpassword"
+              dependencies={["newpassword"]}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: "Xin vui lòng nhập Xác nhận mật khẩu!",
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("newpassword") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error("Mật khẩu không khớp!"));
+                  },
+                }),
+              ]}
+            >
               <Input.Password
                 value={changePasswordData.confirmPassword}
                 placeholder="Xác Nhận Mật khẩu"

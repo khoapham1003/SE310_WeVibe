@@ -49,7 +49,7 @@ function MainPage() {
 
   const handleCardClick = (item) => {
     console.log("Card clicked:", item);
-    navigate(`/product-detail/${item.id}`, { state: { item } });
+    navigate(`/product-detail-${item.productId}`, { state: { item } });
   };
 
   return (
@@ -80,14 +80,14 @@ function MainPage() {
         {items.map((item) => (
           <Card
             className="card_item"
-            key={item.title}
+            key={item.Name}
             hoverable
             bodyStyle={{ padding: "10px 24px" }}
             cover={
               <img
                 className="mp_product_item_image"
                 src={item.picture}
-                alt={item.title}
+                alt={item.Name}
               />
             }
             onClick={() => handleCardClick(item)}

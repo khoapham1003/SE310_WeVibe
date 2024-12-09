@@ -46,11 +46,14 @@ function ProductAdmin() {
 
   const fetchProductData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/product/get-all", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "http://localhost:7180/api/Product/all-products",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -68,7 +71,7 @@ function ProductAdmin() {
   const removeProduct = async (ItemId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/product/delete/${ItemId}`,
+        `http://localhost:7180/api/Product/${ItemId}`,
         {
           method: "DELETE",
           headers: {
@@ -95,7 +98,7 @@ function ProductAdmin() {
   const editProduct = async (ItemId, requestBody) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/product/update/${ItemId}`,
+        `http://localhost:7180/api/Product/${ItemId}`,
         {
           method: "PUT",
           headers: {
@@ -118,7 +121,7 @@ function ProductAdmin() {
 
   const addProduct = async (requestBody) => {
     try {
-      const response = await fetch("http://localhost:3000/product/create", {
+      const response = await fetch("http://localhost:7180/api/Product", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

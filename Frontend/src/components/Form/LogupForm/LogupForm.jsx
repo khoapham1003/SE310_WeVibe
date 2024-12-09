@@ -15,7 +15,6 @@ function Logup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-
   useEffect(() => {}, []);
 
   const onFinish = (values) => {
@@ -60,7 +59,7 @@ function Logup() {
       };
       console.log("Failed:", requestBody);
 
-      const response = await fetch("http://localhost:3000/auth/register", {
+      const response = await fetch("http://localhost:7180/Auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +69,7 @@ function Logup() {
 
       if (!response.ok) {
         message.error("Đăng ký tài khoản thất bại. Hãy thử lại sau!");
-        message.error(response.json)
+        message.error(response.json);
       } else {
         message.success(`Đăng ký tài khoản thành công!`);
         navigate(`/sign_in`);
@@ -96,7 +95,11 @@ function Logup() {
           name="lastName"
           rules={[{ required: true, message: "Xin vui lòng nhập Họ!" }]}
         >
-          <Input name="lastName" value={lastName} onChange={handleInputChange} />
+          <Input
+            name="lastName"
+            value={lastName}
+            onChange={handleInputChange}
+          />
         </Form.Item>
 
         <Form.Item
@@ -104,7 +107,11 @@ function Logup() {
           name="middleName"
           rules={[{ required: true, message: "Xin vui lòng nhập Tên lót!" }]}
         >
-          <Input name="middleName" value={middleName} onChange={handleInputChange} />
+          <Input
+            name="middleName"
+            value={middleName}
+            onChange={handleInputChange}
+          />
         </Form.Item>
 
         <Form.Item
@@ -112,22 +119,35 @@ function Logup() {
           name="firstName"
           rules={[{ required: true, message: "Xin vui lòng nhập Tên!" }]}
         >
-          <Input name="firstName" value={firstName} onChange={handleInputChange} />
+          <Input
+            name="firstName"
+            value={firstName}
+            onChange={handleInputChange}
+          />
         </Form.Item>
 
         <Form.Item
           label="Số điện thoại"
           name="phoneNumber"
-          rules={[{ required: true, message: "Xin vui lòng nhập Số điện thoại!" }]}
+          rules={[
+            { required: true, message: "Xin vui lòng nhập Số điện thoại!" },
+          ]}
         >
-          <Input name="phoneNumber" value={phoneNumber} onChange={handleInputChange} />
+          <Input
+            name="phoneNumber"
+            value={phoneNumber}
+            onChange={handleInputChange}
+          />
         </Form.Item>
 
         <Form.Item
           label="Email"
           name="email"
           rules={[
-            { type: "email", message: "Đầu vào không phải là địa chỉ email hợp lệ!" },
+            {
+              type: "email",
+              message: "Đầu vào không phải là địa chỉ email hợp lệ!",
+            },
             { required: true, message: "Xin vui lòng nhập Email!" },
           ]}
         >
@@ -139,7 +159,11 @@ function Logup() {
           name="password"
           rules={[{ required: true, message: "Xin vui lòng nhập Mật khẩu!" }]}
         >
-          <Input.Password name="password" value={password} onChange={handleInputChange} />
+          <Input.Password
+            name="password"
+            value={password}
+            onChange={handleInputChange}
+          />
         </Form.Item>
 
         <Form.Item

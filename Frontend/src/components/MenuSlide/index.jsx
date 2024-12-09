@@ -37,7 +37,7 @@ const MenuSlide = ({ onMenuSelect }) => {
   // Fetch menu data and transform it
   const fetchMenuData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/category/get-all-categories", {
+      const response = await fetch("http://localhost:7180/api/Category", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

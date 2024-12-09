@@ -45,7 +45,7 @@ function UserAdmin() {
 
   const fetchProductData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/user/getAll", {
+      const response = await fetch("http://localhost:7180/user/getAll", {
         headers: {
           "Content-Type": "application/json",
           token: `Bearer ${jwtToken}`,
@@ -68,7 +68,7 @@ function UserAdmin() {
   const removeProduct = async (UserId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/user/delete-user/${UserId}`,
+        `http://localhost:7180/user/delete-user/${UserId}`,
         {
           method: "DELETE",
           headers: {

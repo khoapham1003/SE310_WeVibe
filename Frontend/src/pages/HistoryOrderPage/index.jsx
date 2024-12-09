@@ -35,7 +35,7 @@ function HistoryOrderPage() {
     const fetchCheckOutData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/order/get-details-order/${orderId}`,
+          `http://localhost:7180/order/get-details-order/${orderId}`,
           {
             method: "GET",
             headers: {
@@ -87,7 +87,7 @@ function HistoryOrderPage() {
           ],
         };
         console.log(`requestdata`, requestBody);
-        const response = await fetch("https://localhost:3000/api/Review", {
+        const response = await fetch("https://localhost:7180/api/Review", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

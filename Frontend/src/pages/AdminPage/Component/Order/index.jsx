@@ -47,7 +47,7 @@ function OrderAdmin() {
   const fetchProductData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/order/get-all-order/`,
+        `http://localhost:7180/order/get-all-order/`,
         {
           headers: {
             "Content-Type": "application/json",
