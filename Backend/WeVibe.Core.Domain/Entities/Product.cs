@@ -9,7 +9,6 @@ namespace WeVibe.Core.Domain.Entities
         public string? Slug { get; set; }
         public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
         public string? Description { get; set; }
-        public decimal Price { get; set; }
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }

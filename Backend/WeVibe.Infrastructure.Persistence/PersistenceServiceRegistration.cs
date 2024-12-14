@@ -30,6 +30,7 @@ namespace WeVibe.Infrastructure.Persistence
             services.AddScoped<IProductImageRepository, ProductImageRepository>();
             services.AddScoped<ISizeRepository, SizeRepository>();
             services.AddScoped<IColorRepository, ColorRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             // Register Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>

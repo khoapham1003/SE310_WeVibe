@@ -31,7 +31,6 @@ namespace WeVibe.Core.Services.Features
                 Slug = product.Slug,
                 Images = _mapper.Map<ICollection<ProductImageDto>>(product.Images),
                 Description = product.Description,
-                Price = product.Price,
                 Quantity = product.Quantity,
                 CategoryId = product.CategoryId,
                 CategoryName = product.Category.Name
@@ -92,7 +91,6 @@ namespace WeVibe.Core.Services.Features
             product.Name = updateProductDto.Name;
             product.Slug = updateProductDto.Slug;
             product.Description = updateProductDto.Description;
-            product.Price = updateProductDto.Price;
             product.Quantity = updateProductDto.Quantity;
             product.CategoryId = updateProductDto.CategoryId;
 
@@ -166,7 +164,6 @@ namespace WeVibe.Core.Services.Features
                 Name = product.Name,
                 Slug = product.Slug,
                 Description = product.Description,
-                Price = product.Price,
                 Quantity = product.Quantity,
                 CategoryId = product.CategoryId,
                 CategoryName = product.Category.Name,
@@ -179,13 +176,26 @@ namespace WeVibe.Core.Services.Features
                 ProductVariants = product.ProductVariants.Select(pv => new ProductVariantDto
                 {
                     ProductVariantId = pv.ProductVariantId,
+                    ProductId = pv.ProductId,
                     SizeName = pv.Size.Name,
                     ColorName = pv.Color.Name,
+                    ColorHex = pv.Color.Hex,
                     Quantity = pv.Quantity
                 }).ToList()
             };
 
             return productDetailDto;
+        }
+        public async Task<IEnumerable<ProductDto>> GetProductsByCategoryAsync(int categoryId)
+        {
+            var products = await _productRepository.GetProductsByCategoryAsync(categoryId);
+
+            if (!products.Any())
+            {
+                throw new NotFoundException($"No products found for Category ID {categoryId}.");
+            }
+
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
     }
