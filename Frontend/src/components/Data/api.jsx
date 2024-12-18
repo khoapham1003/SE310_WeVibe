@@ -3,10 +3,11 @@
 export const fetchProductData = async () => {
   try {
     const response = await fetch(
-      "http://localhost:7180/api/Product/all-products",
+      "https://localhost:7180/api/Product/all-products",
       {
         headers: {
           "Content-Type": "application/json",
+
         },
       }
     );
