@@ -31,7 +31,7 @@ function MainPage() {
     const fetchData = async () => {
       try {
         const data = await fetchProductData();
-        setItems(data.data);
+        setItems(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -80,21 +80,21 @@ function MainPage() {
         {items.map((item) => (
           <Card
             className="card_item"
-            key={item.Name}
+            key={item.name}
             hoverable
             bodyStyle={{ padding: "10px 24px" }}
             cover={
               <img
                 className="mp_product_item_image"
-                src={item.picture}
-                alt={item.Name}
+                src={`https://localhost:7180/static${item.images[0].imagePath}`} 
+                alt={item.name}
               />
             }
             onClick={() => handleCardClick(item)}
           >
             <div className="flex_column">
               <div className="title_start_container">
-                <span className="book_title">{item.title}</span>
+                <span className="book_title">{item.name}</span>
               </div>
               <span className="book_price">
                 {item.price}
