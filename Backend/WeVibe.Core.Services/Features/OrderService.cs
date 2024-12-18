@@ -20,7 +20,6 @@ namespace WeVibe.Core.Services.Features
         }
         public async Task<OrderDto> CreateOrderAsync(string userId, string address)
         {
-            // Fetch the user's cart
             var cart = await _cartRepository.GetCartWithItemsByUserIdAsync(userId);
 
             if (cart == null || !cart.CartItems.Any())
@@ -28,18 +27,16 @@ namespace WeVibe.Core.Services.Features
                 throw new Exception("Cart is empty or not found.");
             }
 
-            // Calculate total amount (sum of unit price * quantity for each cart item)
             decimal totalAmount = 0;
             foreach (var cartItem in cart.CartItems)
             {
                 totalAmount += cartItem.UnitPrice * cartItem.Quantity;
             }
 
-            // Create an Order object
             var order = new Order
             {
                 TotalAmount = totalAmount,
-                Status = "Pending",  // Set initial status to "Pending"
+                Status = "Pending",
                 UserId = userId,
                 AddressValue = address,
                 OrderItems = cart.CartItems.Select(ci => new OrderItem
@@ -75,6 +72,34 @@ namespace WeVibe.Core.Services.Features
 
             return orderDto;
         }
+        public async Task<IEnumerable<OrderHistoryDto>> GetOrderHistoryAsync(string userId)
+        {
+            var orders = await _orderRepository.GetOrdersWithTransactionsByUserIdAsync(userId);
 
+            var orderHistoryDtos = orders.Select(order => new OrderHistoryDto
+            {
+                OrderId = order.OrderId,
+                TotalAmount = order.TotalAmount,
+                Status = order.Status,
+                OrderDate = order.DateCreated,
+                AddressValue = order.AddressValue,
+                PaymentMethod = order.Transaction?.PaymentMethod,
+                PayAmount = order.Transaction?.PayAmount ?? 0,
+                TransactionStatus = order.Transaction?.Status,
+                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
+                {
+                    OrderItemId = oi.OrderItemId,
+                    ProductId = oi.ProductId,
+                    Quantity = oi.Quantity,
+                    UnitPrice = oi.UnitPrice,
+                    ProductVariantId = oi.ProductVariantId,
+                    ProductName = oi.Product.Name,
+                    SizeName = oi.ProductVariant.Size.Name,
+                    ColorName = oi.ProductVariant.Color.Name
+                }).ToList()
+            });
+
+            return orderHistoryDtos;
+        }
     }
 }
