@@ -33,7 +33,7 @@ namespace WeVibe.Core.Services.Features
                 var productVariant = await _productVariantRepository.GetByIdAsync(cartItem.ProductVariantId);
                 if (productVariant != null)
                 {
-                    cartItem.UnitPrice = productVariant.Product.Price;
+                    cartItem.UnitPrice = productVariant.Price;
                 }
             }
 
@@ -56,7 +56,7 @@ namespace WeVibe.Core.Services.Features
             if (productVariant == null) throw new KeyNotFoundException("Product variant not found");
 
             var cartItem = _mapper.Map<CartItem>(addToCartDto);
-            cartItem.UnitPrice = productVariant.Product.Price;
+            cartItem.UnitPrice = productVariant.Price;
             cartItem.Discount = addToCartDto.Discount;
 
             cart.CartItems.Add(cartItem);

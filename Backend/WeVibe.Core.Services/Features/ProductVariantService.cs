@@ -56,6 +56,7 @@ namespace WeVibe.Core.Services.Features
                 ProductId = createDto.ProductId,
                 SizeId = size.SizeId,
                 ColorId = color.ColorId,
+                Price = createDto.Price,
                 Quantity = createDto.Quantity
             };
 
@@ -122,6 +123,7 @@ namespace WeVibe.Core.Services.Features
             color.Name = updateDto.ColorName;
             color.Hex = updateDto.ColorHex;
 
+            productVariant.Price = updateDto.Price;
             productVariant.Quantity = updateDto.Quantity;
 
             await _sizeRepository.UpdateAsync(size);

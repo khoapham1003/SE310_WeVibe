@@ -112,11 +112,12 @@ namespace WeVibe.Infrastructure.Persistence.DataContext
                 .HasForeignKey(oi => oi.ProductVariantId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Configure Order -> Transaction (one-to-one)
             modelBuilder.Entity<Order>()
-                .HasOne(o => o.Address)
-                .WithMany()
-                .HasForeignKey(o => o.AddressId);               
+            .HasOne(o => o.Transaction)
+            .WithOne(t => t.Order)
+            .HasForeignKey<Transaction>(t => t.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         }
 
         public override int SaveChanges()

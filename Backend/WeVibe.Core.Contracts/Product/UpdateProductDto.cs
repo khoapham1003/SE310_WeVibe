@@ -14,7 +14,6 @@ namespace WeVibe.Core.Contracts.Product
         public List<IFormFile> ImagesToAdd { get; set; } = new List<IFormFile>();
         public ICollection<int> ImagesToRemove { get; set; } = new List<int>();
         public string Description { get; set; }
-        public decimal Price { get; set; }
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
     }

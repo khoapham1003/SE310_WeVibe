@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System.Net;
-using WeVibe.Core.Domain.Common;
 
 namespace WeVibe.Core.Domain.Entities
 {

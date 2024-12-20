@@ -6,6 +6,7 @@
         public string SizeName { get; set; }
         public string ColorName { get; set; }
         public string ColorHex { get; set; }
+        public decimal Price { get; set; }
         public int Quantity { get; set; }
     }
 }

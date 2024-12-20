@@ -7,5 +7,6 @@ namespace WeVibe.Core.Domain.Repositories
         Task<IEnumerable<Product>> GetAllWithCategoryAsync();
         Task<Product> GetProductDetailAsync(int id);
         Task<Product> GetProductByIdAsync(int id);
+        Task<IEnumerable<Product>> GetProductsByCategoryAsync(int categoryId);
     }
 }

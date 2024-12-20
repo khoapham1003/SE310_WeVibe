@@ -11,33 +11,32 @@ const MenuSlide = ({ onMenuSelect }) => {
   const [menuData, setMenuData] = useState([]);
   const [menuVisible, setMenuVisible] = useState(false);
 
-  // Function to transform flat data to nested structure
+  // Transform flat data into hierarchical structure
   const transformMenuData = (data) => {
+    // Mock transformation logic if needed
     const menuMap = {};
     const roots = [];
 
     data.forEach((item) => {
-      menuMap[item.id] = { ...item, children: [] };
+      menuMap[item.categoryId] = { ...item, children: [] };
     });
 
-    // Build the tree structure
     data.forEach((item) => {
-      if (item.parentId) {
-        // If item has a parentId, push it into its parent's children
-        menuMap[item.parentId]?.children.push(menuMap[item.id]);
+      if (item.gender !== 0) {
+        // Assume 'gender' determines parent-child relationship
+        menuMap[item.gender]?.children.push(menuMap[item.categoryId]);
       } else {
-        // If no parentId, it's a root item
-        roots.push(menuMap[item.id]);
+        roots.push(menuMap[item.categoryId]);
       }
     });
 
     return roots;
   };
 
-  // Fetch menu data and transform it
+  // Fetch menu data
   const fetchMenuData = async () => {
     try {
-      const response = await fetch("http://localhost:7180/api/Category", {
+      const response = await fetch("https://localhost:7180/api/Category", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +46,8 @@ const MenuSlide = ({ onMenuSelect }) => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      const transformedData = transformMenuData(data.data);
+      console.log("API data:", data);
+      const transformedData = transformMenuData(data);
       setMenuData(transformedData);
     } catch (error) {
       console.error("Error fetching menu data:", error);
@@ -67,12 +67,12 @@ const MenuSlide = ({ onMenuSelect }) => {
     return items.map((item) => {
       if (item.children && item.children.length > 0) {
         return (
-          <SubMenu key={item.id} title={item.title}>
+          <SubMenu key={item.categoryId} title={item.name}>
             {renderMenuItems(item.children)}
           </SubMenu>
         );
       } else {
-        return <Menu.Item key={item.id}>{item.title}</Menu.Item>;
+        return <Menu.Item key={item.categoryId}>{item.name}</Menu.Item>;
       }
     });
   };
