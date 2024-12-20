@@ -46,11 +46,7 @@ function Header() {
             navigate("/");
           }}
         >
-          <img
-            className="h_logo_image"
-            src={images.logo}
-            alt="1015 BookStore"
-          />
+          <img className="h_logo_image" src={images.logo} alt="WeVibe" />
         </div>
         <div className={cx("h_search_bar")}>
           <SearchBar />
@@ -65,10 +61,13 @@ function Header() {
               icon={<UserOutlined />}
               style={{
                 display: "inline",
-                width: "4vh",
-                height: "4vh",
-                border: "none",
                 boxShadow: "none",
+                width: "3rem",
+                color: "#127567",
+                border: "none",
+                fontWeight: "600",
+                cursor: "pointer",
+                background: "#ffffff",
               }}
             ></Button>
           </Dropdown>

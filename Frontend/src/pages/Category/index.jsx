@@ -27,7 +27,7 @@ const FilteredPage = () => {
         setLoading(true);
 
         const response = await fetch(
-          `https://localhost:7139/api/Product/public-paging-cate?lCate_ids=${selectedMenu}&pageindex=${pagination.current}&pagesize=${pagination.pageSize}`
+          `http://localhost:7180/product/category/${selectedMenu}`
         );
 
         if (!response.ok) {
@@ -53,7 +53,7 @@ const FilteredPage = () => {
   };
 
   const handleProductClick = (item) => {
-    navigate(`/product-detail/${item.iProduct_id}`, { state: { item } });
+    navigate(`/product-detail/${item.id}`, { state: { item } });
   };
 
   return (
@@ -73,33 +73,29 @@ const FilteredPage = () => {
           items.map((item) => (
             <Card
               className="card_item"
-              key={item.iProduct_id}
+              key={item.id}
               hoverable
               bodyStyle={{ padding: "10px 24px" }}
               cover={
                 <img
-                  className="mp_book_item_image"
-                  alt={item.sProduct_name}
-                  src={
-                    item.sImage_pathThumbnail == null
-                      ? require(`../../assets/user-content/img_default.webp`)
-                      : require(`../../assets/user-content/${item.sImage_pathThumbnail}`)
-                  }
+                  className="mp_product_item_image"
+                  alt={item.title}
+                  src={item.picture}
                 />
               }
               onClick={() => handleProductClick(item)}
             >
               <div className="flex_column">
                 <div className="title_start_container">
-                  <span className="book_title">{item.sProduct_name}</span>
-                  <Rate
+                  <span className="product_title">{item.title}</span>
+                  {/* <Rate
                     disabled
-                    className="book_star"
+                    className="product_star"
                     defaultValue={item.dProduct_start_count}
-                  />
+                  /> */}
                 </div>
-                <span className="book_price">
-                  {item.vProduct_price}
+                <span className="product_price">
+                  {item.price}
                   <span
                     style={{
                       verticalAlign: "super",
