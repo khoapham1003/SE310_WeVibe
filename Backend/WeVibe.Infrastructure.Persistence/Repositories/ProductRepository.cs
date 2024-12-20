@@ -35,5 +35,14 @@ namespace WeVibe.Infrastructure.Persistence.Repositories
                 .Include(p => p.Category)
                 .FirstOrDefaultAsync(p => p.ProductId == id);
         }
+
+        public async Task<IEnumerable<Product>> GetProductsByCategoryAsync(int categoryId)
+        {
+            return await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Images)
+                .Where(p => p.CategoryId == categoryId)
+                .ToListAsync();
+        }
     }
 }

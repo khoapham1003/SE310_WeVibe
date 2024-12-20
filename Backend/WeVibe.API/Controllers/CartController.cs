@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using WeVibe.Core.Contracts.Cart;
 using WeVibe.Core.Services.Abstractions.Features;
 
@@ -14,7 +15,8 @@ namespace WeVibe.API.Controllers
         {
             _cartService = cartService;
         }
-        [HttpPost]
+        [HttpPost("add")]
+        [SwaggerOperation(Summary = "Add item to cart", Description = "Use to add item to cart from ProductDetail page")]
         public async Task<IActionResult> AddToCartAsync([FromBody] AddToCartDto addToCartDto)
         {
             try

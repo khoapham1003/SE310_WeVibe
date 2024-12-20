@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WeVibe.Infrastructure.Persistence.DataContext;
 
@@ -11,9 +12,11 @@ using WeVibe.Infrastructure.Persistence.DataContext;
 namespace WeVibe.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241210124201_update-order-table")]
+    partial class updateordertable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -656,8 +659,7 @@ namespace WeVibe.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Transactions");
                 });
@@ -863,8 +865,8 @@ namespace WeVibe.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("WeVibe.Core.Domain.Entities.Transaction", b =>
                 {
                     b.HasOne("WeVibe.Core.Domain.Entities.Order", "Order")
-                        .WithOne("Transaction")
-                        .HasForeignKey("WeVibe.Core.Domain.Entities.Transaction", "OrderId")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -904,9 +906,6 @@ namespace WeVibe.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("WeVibe.Core.Domain.Entities.Order", b =>
                 {
                     b.Navigation("OrderItems");
-
-                    b.Navigation("Transaction")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("WeVibe.Core.Domain.Entities.Product", b =>
