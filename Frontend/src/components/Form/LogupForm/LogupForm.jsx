@@ -13,7 +13,7 @@ function Logup() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [rePassword, setrePassword] = useState("");
 
   useEffect(() => {}, []);
 
@@ -41,8 +41,8 @@ function Logup() {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
-    } else if (name === "confirmPassword") {
-      setConfirmPassword(value);
+    } else if (name === "rePassword") {
+      setrePassword(value);
     }
   };
 
@@ -50,16 +50,15 @@ function Logup() {
     try {
       const requestBody = {
         firstName,
-        middleName,
         lastName,
-        phoneNumber,
         email,
         password,
-        confirmPassword,
+        rePassword,
       };
       console.log("Failed:", requestBody);
 
-      const response = await fetch("http://localhost:7180/Auth/register", {
+      const response = await fetch("https://localhost:7180/register", {
+        mode: "cors",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,18 +102,6 @@ function Logup() {
         </Form.Item>
 
         <Form.Item
-          label="Tên lót"
-          name="middleName"
-          rules={[{ required: true, message: "Xin vui lòng nhập Tên lót!" }]}
-        >
-          <Input
-            name="middleName"
-            value={middleName}
-            onChange={handleInputChange}
-          />
-        </Form.Item>
-
-        <Form.Item
           label="Tên"
           name="firstName"
           rules={[{ required: true, message: "Xin vui lòng nhập Tên!" }]}
@@ -122,20 +109,6 @@ function Logup() {
           <Input
             name="firstName"
             value={firstName}
-            onChange={handleInputChange}
-          />
-        </Form.Item>
-
-        <Form.Item
-          label="Số điện thoại"
-          name="phoneNumber"
-          rules={[
-            { required: true, message: "Xin vui lòng nhập Số điện thoại!" },
-          ]}
-        >
-          <Input
-            name="phoneNumber"
-            value={phoneNumber}
             onChange={handleInputChange}
           />
         </Form.Item>
@@ -168,7 +141,7 @@ function Logup() {
 
         <Form.Item
           label="Xác nhận mật khẩu"
-          name="confirmPassword"
+          name="rePassword"
           dependencies={["password"]}
           hasFeedback
           rules={[
@@ -186,8 +159,8 @@ function Logup() {
           ]}
         >
           <Input.Password
-            name="confirmPassword"
-            value={confirmPassword}
+            name="rePassword"
+            value={rePassword}
             onChange={handleInputChange}
           />
         </Form.Item>

@@ -27,7 +27,7 @@ const FilteredPage = () => {
         setLoading(true);
 
         const response = await fetch(
-          `http://localhost:7180/product/category/${selectedMenu}`
+          `https://localhost:7180/api/Product/category/${selectedMenu}`
         );
 
         if (!response.ok) {
