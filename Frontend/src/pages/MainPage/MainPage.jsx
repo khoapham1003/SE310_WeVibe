@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchProductData } from "../../components/Data/api";
 import { floatButtonPrefixCls } from "antd/es/float-button/FloatButton";
 import "./../styleMainPage.css";
-import background_log from "./../../assets/images/background_log.png";
+import background_log from "../../assets/images/background_log.png";
 
 const { Meta } = Card;
 
@@ -30,8 +30,7 @@ function MainPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const jwtToken = getCookie("accessToken");
-        const data = await fetchProductData(jwtToken);
+        const data = await fetchProductData();
         setItems(data);
       } catch (error) {
         setError(error.message);
@@ -50,7 +49,7 @@ function MainPage() {
 
   const handleCardClick = (item) => {
     console.log("Card clicked:", item);
-    navigate(`/product-detail/${item.iProduct_id}`, { state: { item } });
+    navigate(`/product-detail-${item.productId}`, { state: { item } });
   };
 
   return (
@@ -70,41 +69,35 @@ function MainPage() {
       </h3>
       <Row className="title_bar">
         <Col>
-          <MenuSlide onMenuSelect={handleMenuSelect} />
+          <MenuSlide
+            size="large"
+            className="title_menu"
+            onMenuSelect={handleMenuSelect}
+          />
         </Col>
       </Row>
       <div className="card_container">
         {items.map((item) => (
           <Card
             className="card_item"
-            key={item.sProduct_name}
+            key={item.name}
             hoverable
             bodyStyle={{ padding: "10px 24px" }}
             cover={
               <img
-                className="mp_book_item_image"
-                alt={item.sProduct_name}
-                src={
-                  item.sImage_pathThumbnail == null
-                    ? require(`../../assets/user-content/img_default.webp`)
-                    : require(`../../assets/user-content/${item.sImage_pathThumbnail}`)
-                }
+                className="mp_product_item_image"
+                src={`https://localhost:7180/static${item.images[0].imagePath}`} 
+                alt={item.name}
               />
             }
             onClick={() => handleCardClick(item)}
           >
             <div className="flex_column">
               <div className="title_start_container">
-                <span className="book_title">{item.sProduct_name}</span>
-                <Rate
-                  disabled
-                  className="book_star"
-                  allowHalf
-                  defaultValue={item.dProduct_start_count.toFixed(1)}
-                />
+                <span className="book_title">{item.name}</span>
               </div>
               <span className="book_price">
-                {item.vProduct_price}
+                {item.price}
                 <span
                   style={{
                     verticalAlign: "super",

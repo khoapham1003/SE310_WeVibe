@@ -17,22 +17,18 @@ const Login = () => {
       const { username, password } = values;
 
       const requestBody = {
-        sUser_username: username,
-        sUser_password: password,
-        rememberme: true,
+        Email: username,
+        Password: password,
       };
 
-      const response = await fetch(
-        "https://localhost:7139/api/User/authenticate",
-        {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        }
-      );
+      const response = await fetch("http://localhost:7180/Auth/login", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
 
       if (!response.ok) {
         const error = await response.text();
@@ -42,12 +38,30 @@ const Login = () => {
       } else {
         const responseData = await response.json();
         console.log(responseData);
-
-        document.cookie = `accessToken=${responseData.sUser_tokenL}; path=/`;
-        document.cookie = `userid=${responseData.gUser_id}; path=/`;
-        message.success("Đăng nhập thành công!");
-        navigate(`/`);
-        window.location.reload();
+        const accessToken = responseData.access_token;
+        if (accessToken) {
+          try {
+            const decodedToken = JSON.parse(atob(accessToken.split(".")[1]));
+            const email = decodedToken.email;
+            const CartId = decodedToken.CartId;
+            const UserId = decodedToken.UserId;
+            const role = decodedToken.role;
+            document.cookie = `accessToken=${responseData.access_token}; path=/`;
+            document.cookie = `email=${email}; path=/`;
+            document.cookie = `CartId=${CartId}; path=/`;
+            document.cookie = `userid=${UserId}; path=/`;
+            document.cookie = `role=${role}; path=/`;
+            message.success("Đăng nhập thành công!");
+            if (role == "admin") {
+              navigate(`/admin`);
+            } else {
+              navigate(`/`);
+            }
+            window.location.reload();
+          } catch (error) {
+            console.error("Error decoding token:", error);
+          }
+        }
       }
     } catch (error) {
       setError("Login failed. Please try again.");

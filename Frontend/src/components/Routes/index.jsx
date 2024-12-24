@@ -17,6 +17,7 @@ import CheckoutPage from "../../pages/CheckoutPage";
 import FilteredPage from "../../pages/Category";
 import SearchPage from "../../pages/SearchPage";
 import HistoryOrderPage from "../../pages/HistoryOrderPage";
+import AdminPage from "../../pages/AdminPage";
 
 function DefineLayout() {
   const isUserAuthenticated = () => {
@@ -87,6 +88,7 @@ const privateRoutes = [
   { path: "/checkout", component: CheckoutPage, layout: DefineLayout() },
   { path: "/cart", component: CartPage },
   { path: "/history", component: HistoryOrderPage, layout: DefineLayout() },
+  { path: "/admin", component: AdminPage, layout: DefineLayout() },
 ];
 
 export { publicRoutes, privateRoutes };

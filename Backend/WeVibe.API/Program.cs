@@ -19,7 +19,6 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -71,6 +70,9 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
+app.UseCors("AllowSpecificOrigins");
+
 app.UseAuthorization();
 
 app.MapControllers();
