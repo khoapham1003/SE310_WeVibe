@@ -26,7 +26,7 @@ namespace WeVibe.Core.Services.Features
         {
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+            new Claim("UserId", user.Id),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim("fullName", $"{user.FirstName} {user.LastName}"),
             };
