@@ -41,7 +41,7 @@ function CartPage() {
       }
 
       const response = await fetch(
-        `http://localhost:7180/api/Cart/user/${userId}`,
+        `https://localhost:7180/api/Cart/user/${userId}`,
         {
           method: "GET",
           headers: {
@@ -73,7 +73,7 @@ function CartPage() {
         );
       }
       const response = await fetch(
-        `http://localhost:7180/api/Cart/remove/${cartItemId}`,
+        `https://localhost:7180/api/Cart/remove/${cartItemId}`,
         {
           method: "DELETE",
           headers: {
@@ -105,7 +105,7 @@ function CartPage() {
         totalDiscount: totalDiscount,
       };
 
-      const response = await fetch(`http://localhost:7180/api/Cart`, {
+      const response = await fetch(`https://localhost:7180/api/Cart`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${jwtToken}`,
@@ -162,7 +162,7 @@ function CartPage() {
         quantity: selectQuantity[index],
       }));
       console.log(requestData);
-      const response = await fetch(`http://localhost:7180/api/Cart`, {
+      const response = await fetch(`https://localhost:7180/api/Cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -200,7 +200,7 @@ function CartPage() {
       };
       console.log("Request Data:", requestData);
       const response = await fetch(
-        `http://localhost:7180/cartitem/update-cartitem/${itemId}`,
+        `https://localhost:7180/api/Cart/update/${itemId}`,
         {
           method: "PATCH",
           headers: {

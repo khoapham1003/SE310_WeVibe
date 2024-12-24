@@ -17,11 +17,11 @@ const Login = () => {
       const { username, password } = values;
 
       const requestBody = {
-        Email: username,
-        Password: password,
+        email: username,
+        password: password,
       };
 
-      const response = await fetch("http://localhost:7180/Auth/login", {
+      const response = await fetch("https://localhost:7180/login", {
         method: "POST",
         mode: "cors",
         headers: {
@@ -38,16 +38,14 @@ const Login = () => {
       } else {
         const responseData = await response.json();
         console.log(responseData);
-        const accessToken = responseData.access_token;
+        const accessToken = responseData.token;
         if (accessToken) {
           try {
             const decodedToken = JSON.parse(atob(accessToken.split(".")[1]));
-            const email = decodedToken.email;
             const CartId = decodedToken.CartId;
             const UserId = decodedToken.UserId;
             const role = decodedToken.role;
-            document.cookie = `accessToken=${responseData.access_token}; path=/`;
-            document.cookie = `email=${email}; path=/`;
+            document.cookie = `accessToken=${responseData.token}; path=/`;
             document.cookie = `CartId=${CartId}; path=/`;
             document.cookie = `userid=${UserId}; path=/`;
             document.cookie = `role=${role}; path=/`;

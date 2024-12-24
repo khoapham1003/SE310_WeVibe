@@ -42,7 +42,7 @@ function ProductPage() {
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        }update-database
         const data = await response.json();
         console.log(data);
         setReviewsData(data);

@@ -37,6 +37,7 @@ const MenuSlide = ({ onMenuSelect }) => {
   const fetchMenuData = async () => {
     try {
       const response = await fetch("https://localhost:7180/api/Category", {
+        mode: "cors",
         method: "GET",
         headers: {
           "Content-Type": "application/json",
