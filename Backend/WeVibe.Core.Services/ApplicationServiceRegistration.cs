@@ -20,6 +20,7 @@ namespace WeVibe.Core.Services
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<IEmailService, EmailService>();
             return services;
         }
     }
