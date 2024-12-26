@@ -8,6 +8,8 @@ using WeVibe.Core.Services.Abstractions.Features;
 
 namespace WeVibe.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController : Controller
     {
         private readonly IAuthService _authService;

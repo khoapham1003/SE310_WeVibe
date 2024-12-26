@@ -10,7 +10,6 @@ namespace WeVibe.API
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            // Seed roles
             string[] roles = { "Admin", "User" };
             foreach (var role in roles)
             {
@@ -20,7 +19,6 @@ namespace WeVibe.API
                 }
             }
 
-            // Seed an admin user
             var adminEmail = "admin@admin.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
             if (adminUser == null)
