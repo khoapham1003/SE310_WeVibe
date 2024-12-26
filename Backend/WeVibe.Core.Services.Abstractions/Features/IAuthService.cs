@@ -12,5 +12,6 @@ namespace WeVibe.Core.Services.Abstractions.Features
         Task ResetPasswordAsync(string email, string token, string newPassword);
         Task ChangePasswordAsync(string userId, string currentPassword, string newPassword);
         Task SendResetPasswordEmailAsync(string email, string resetUrlBase);
+        Task<string> AssignRolesAsync(string userId, List<string> roles);
     }
 }

@@ -24,12 +24,15 @@ namespace WeVibe.Core.Services.Features
 
         public async Task<string> GenerateAccessTokenAsync(ApplicationUser user)
         {
-            var claims = new[]
+            var claims = new List<Claim>
             {
-            new Claim("UserId", user.Id),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim("fullName", $"{user.FirstName} {user.LastName}"),
+                new Claim("UserId", user.Id),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("fullName", $"{user.FirstName} {user.LastName}")
             };
+
+            var roles = await _userManager.GetRolesAsync(user);
+            claims.AddRange(roles.Select(role => new Claim("Role", role)));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -44,7 +47,6 @@ namespace WeVibe.Core.Services.Features
 
             return _jwtSecurityTokenHandler.WriteToken(token);
         }
-
         public async Task<string> GenerateRefreshTokenAsync(ApplicationUser user)
         {
             var refreshToken = new RefreshToken

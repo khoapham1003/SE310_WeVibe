@@ -134,6 +134,29 @@ namespace WeVibe.Core.Services.Features
 
             await _emailService.SendEmailAsync(email, "Password Reset Request", emailBody);
         }
+        public async Task<string> AssignRolesAsync(string userId, List<string> roles)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return "User not found";
+            }
 
+            var currentRoles = await _userManager.GetRolesAsync(user);
+            var removeResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+
+            if (!removeResult.Succeeded)
+            {
+                return "Failed to remove old roles";
+            }
+
+            var addResult = await _userManager.AddToRolesAsync(user, roles);
+            if (!addResult.Succeeded)
+            {
+                return "Failed to add new roles";
+            }
+
+            return "Roles updated successfully";
+        }
     }
 }

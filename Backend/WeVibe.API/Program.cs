@@ -1,4 +1,5 @@
 using Microsoft.Extensions.FileProviders;
+using WeVibe.API;
 using WeVibe.Core.Services;
 using WeVibe.Infrastructure.Persistence;
 
@@ -53,6 +54,10 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    await SeedData.InitializeAsync(scope.ServiceProvider);
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
