@@ -18,7 +18,7 @@ namespace WeVibe.API.Controllers
             _orderService = orderService;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDto createOrderDto)
+        public async Task<IActionResult> CreateOrder()
         {
             try
             {
@@ -29,7 +29,7 @@ namespace WeVibe.API.Controllers
                     return Unauthorized("User ID not found in token.");
                 }
 
-                var orderDto = await _orderService.CreateOrderAsync(userId, createOrderDto.Address);
+                var orderDto = await _orderService.CreateOrderAsync(userId);
 
                 return Ok(new
                 {

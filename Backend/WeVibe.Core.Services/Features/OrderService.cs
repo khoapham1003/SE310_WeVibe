@@ -18,7 +18,7 @@ namespace WeVibe.Core.Services.Features
             _cartRepository = cartRepository;
             _mapper = mapper;
         }
-        public async Task<OrderDto> CreateOrderAsync(string userId, string address)
+        public async Task<OrderDto> CreateOrderAsync(string userId)
         {
             var cart = await _cartRepository.GetCartWithItemsByUserIdAsync(userId);
 
@@ -38,7 +38,7 @@ namespace WeVibe.Core.Services.Features
                 TotalAmount = totalAmount,
                 Status = "Pending",
                 UserId = userId,
-                AddressValue = address,
+                AddressValue = "",
                 OrderItems = cart.CartItems.Select(ci => new OrderItem
                 {
                     ProductId = ci.ProductVariant.ProductId,
@@ -63,6 +63,7 @@ namespace WeVibe.Core.Services.Features
                     ProductId = oi.ProductId,
                     Quantity = oi.Quantity,
                     UnitPrice = oi.UnitPrice,
+                    
                     ProductVariantId = oi.ProductVariantId,
                     ProductName = oi.Product.Name,
                     SizeName = oi.ProductVariant.Size.Name,

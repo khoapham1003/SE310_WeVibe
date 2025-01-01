@@ -4,7 +4,7 @@ namespace WeVibe.Core.Services.Abstractions.Features
 {
     public interface IOrderService
     {
-        Task<OrderDto> CreateOrderAsync(string userId, string address);
+        Task<OrderDto> CreateOrderAsync(string userId);
         Task<IEnumerable<OrderHistoryDto>> GetOrderHistoryAsync(string userId);
     }
 }
