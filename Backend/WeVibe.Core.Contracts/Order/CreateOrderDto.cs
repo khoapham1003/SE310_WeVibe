@@ -2,5 +2,6 @@
 {
     public class CreateOrderDto
     {
+        public string userId { get; set; }
     }
 }

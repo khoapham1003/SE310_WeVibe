@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using WeVibe.Core.Contracts.Order;
+using WeVibe.Core.Contracts.Transaction;
 using WeVibe.Core.Domain.Entities;
 using WeVibe.Core.Domain.Repositories;
 using WeVibe.Core.Services.Abstractions.Features;
@@ -107,5 +108,32 @@ namespace WeVibe.Core.Services.Features
 
             return orderHistoryDtos;
         }
+        public async Task<OrderDto> GetOrderByIdAsync(int orderId)
+        {
+            var order = await _orderRepository.GetOrderWithTransactionAndItemsAsync(orderId);
+
+            var orderDetailDto = new OrderDto
+            {
+                OrderId = order.OrderId,
+                TotalAmount = order.TotalAmount,
+                Status = order.Status,
+                AddressValue = order.AddressValue,
+                RecipientName = order.RecipientName,
+                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
+                {
+                    OrderItemId = oi.OrderItemId,
+                    ProductId = oi.ProductId,
+                    Quantity = oi.Quantity,
+                    UnitPrice = oi.UnitPrice,
+                    ProductVariantId = oi.ProductVariantId,
+                    ProductName = oi.Product.Name,
+                    SizeName = oi.ProductVariant.Size.Name,
+                    ColorName = oi.ProductVariant.Color.Name
+                }).ToList(),
+            };
+
+            return orderDetailDto;
+        }
+
     }
 }

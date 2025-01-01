@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WeVibe.Core.Contracts.Order;
+using WeVibe.Core.Domain.Entities;
 using WeVibe.Core.Services.Abstractions.Features;
 
 namespace WeVibe.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
@@ -18,11 +18,15 @@ namespace WeVibe.API.Controllers
             _orderService = orderService;
         }
         [HttpPost("create-order")]
-        public async Task<IActionResult> CreateOrder()
+        [SwaggerOperation(Summary = "Create a new order", Description = "Creates an order for the logged-in user.")]
+        [SwaggerResponse(200, "Order created successfully", typeof(OrderDto))]
+        [SwaggerResponse(401, "Unauthorized - User not found in token.")]
+        [SwaggerResponse(400, "Bad Request - Validation or processing error.")]
+        public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDto createOrderDto)
         {
             try
             {
-                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                var userId = createOrderDto.userId;
 
                 if (string.IsNullOrEmpty(userId))
                 {
@@ -44,6 +48,7 @@ namespace WeVibe.API.Controllers
                 return BadRequest(new { message = ex.Message, innerException = ex.InnerException?.Message });
             }
         }
+        [Authorize]
         [HttpGet("orders-history")]
         [SwaggerOperation(Summary = "Get order history", Description = "Retrieve the user's order history including transaction details.")]
         [SwaggerResponse(200, "Order history retrieved successfully", typeof(IEnumerable<OrderHistoryDto>))]
@@ -68,6 +73,25 @@ namespace WeVibe.API.Controllers
                 }
 
                 return Ok(orderHistory);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [HttpGet("order/{orderId}")]
+        [SwaggerOperation(Summary = "Get order by ID", Description = "Retrieve detailed information about a specific order.")]
+        [SwaggerResponse(200, "Order retrieved successfully", typeof(OrderDto))]
+        [SwaggerResponse(401, "Unauthorized - User not found in token.")]
+        [SwaggerResponse(404, "Order not found.")]
+        public async Task<IActionResult> GetOrderById(int orderId)
+        {
+            try
+            {
+
+                var orderDetail = await _orderService.GetOrderByIdAsync(orderId);
+
+                return Ok(orderDetail);
             }
             catch (Exception ex)
             {
