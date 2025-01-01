@@ -55,27 +55,29 @@ namespace WeVibe.Core.Services.Features
             cart.CartItems.Clear();
             await _cartRepository.UpdateAsync(cart);
 
-            var orderDto = new OrderDto
-            {
-                OrderId = order.OrderId,
-                TotalAmount = order.TotalAmount,
-                Status = order.Status,
-                UserId = order.UserId,
-                AddressValue = order.AddressValue,
-                RecipientName = order.RecipientName,
-                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
-                {
-                    OrderItemId = oi.OrderItemId,
-                    ProductId = oi.ProductId,
-                    Quantity = oi.Quantity,
-                    UnitPrice = oi.UnitPrice,
+            var orderDto = _mapper.Map<OrderDto>(order);
+
+            //var orderDto = new OrderDto
+            //{
+            //    OrderId = order.OrderId,
+            //    TotalAmount = order.TotalAmount,
+            //    Status = order.Status,
+            //    UserId = order.UserId,
+            //    AddressValue = order.AddressValue,
+            //    RecipientName = order.RecipientName,
+            //    OrderItems = order.OrderItems.Select(oi => new OrderItemDto
+            //    {
+            //        OrderItemId = oi.OrderItemId,
+            //        ProductId = oi.ProductId,
+            //        Quantity = oi.Quantity,
+            //        UnitPrice = oi.UnitPrice,
                     
-                    ProductVariantId = oi.ProductVariantId,
-                    ProductName = oi.Product.Name,
-                    SizeName = oi.ProductVariant.Size.Name,
-                    ColorName = oi.ProductVariant.Color.Name 
-                }).ToList()
-            };
+            //        ProductVariantId = oi.ProductVariantId,
+            //        SizeName = oi.ProductVariant.Size.Name,
+            //        ColorName = oi.ProductVariant.Color.Name 
+            //    }).ToList()
+            //};
+
 
             return orderDto;
         }
@@ -83,56 +85,40 @@ namespace WeVibe.Core.Services.Features
         {
             var orders = await _orderRepository.GetOrdersWithTransactionsByUserIdAsync(userId);
 
-            var orderHistoryDtos = orders.Select(order => new OrderHistoryDto
-            {
-                OrderId = order.OrderId,
-                TotalAmount = order.TotalAmount,
-                Status = order.Status,
-                OrderDate = order.DateCreated,
-                AddressValue = order.AddressValue,
-                PaymentMethod = order.Transaction?.PaymentMethod,
-                PayAmount = order.Transaction?.PayAmount ?? 0,
-                TransactionStatus = order.Transaction?.Status,
-                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
-                {
-                    OrderItemId = oi.OrderItemId,
-                    ProductId = oi.ProductId,
-                    Quantity = oi.Quantity,
-                    UnitPrice = oi.UnitPrice,
-                    ProductVariantId = oi.ProductVariantId,
-                    ProductName = oi.Product.Name,
-                    SizeName = oi.ProductVariant.Size.Name,
-                    ColorName = oi.ProductVariant.Color.Name
-                }).ToList()
-            });
+            var orderHistoryDtos = _mapper.Map<IEnumerable<OrderHistoryDto>>(orders);
 
             return orderHistoryDtos;
         }
         public async Task<OrderDto> GetOrderByIdAsync(int orderId)
         {
             var order = await _orderRepository.GetOrderWithTransactionAndItemsAsync(orderId);
-
-            var orderDetailDto = new OrderDto
+            if (order == null)
             {
-                OrderId = order.OrderId,
-                TotalAmount = order.TotalAmount,
-                Status = order.Status,
-                AddressValue = order.AddressValue,
-                RecipientName = order.RecipientName,
-                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
-                {
-                    OrderItemId = oi.OrderItemId,
-                    ProductId = oi.ProductId,
-                    Quantity = oi.Quantity,
-                    UnitPrice = oi.UnitPrice,
-                    ProductVariantId = oi.ProductVariantId,
-                    ProductName = oi.Product.Name,
-                    SizeName = oi.ProductVariant.Size.Name,
-                    ColorName = oi.ProductVariant.Color.Name
-                }).ToList(),
-            };
+                throw new Exception("Order not found.");
+            }
+
+            var orderDetailDto = _mapper.Map<OrderDto>(order);
 
             return orderDetailDto;
+            //var orderDetailDto = new OrderDto
+            //{
+            //    OrderId = order.OrderId,
+            //    TotalAmount = order.TotalAmount,
+            //    Status = order.Status,
+            //    AddressValue = order.AddressValue,
+            //    RecipientName = order.RecipientName,
+            //    OrderItems = order.OrderItems.Select(oi => new OrderItemDto
+            //    {
+            //        OrderItemId = oi.OrderItemId,
+            //        ProductId = oi.ProductId,
+            //        Quantity = oi.Quantity,
+            //        UnitPrice = oi.UnitPrice,
+            //        ProductVariantId = oi.ProductVariantId,
+            //        ProductName = oi.Product.Name,
+            //        SizeName = oi.ProductVariant.Size.Name,
+            //        ColorName = oi.ProductVariant.Color.Name
+            //    }).ToList(),
+            //};
         }
 
     }

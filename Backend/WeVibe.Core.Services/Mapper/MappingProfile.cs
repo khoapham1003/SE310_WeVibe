@@ -65,7 +65,7 @@ namespace WeVibe.Core.Services.Mapper
 
             // Map OrderItem to OrderItemDto
             CreateMap<OrderItem, OrderItemDto>()
-                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
+                .ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Product))
                 .ForMember(dest => dest.SizeName, opt => opt.MapFrom(src => src.ProductVariant.Size.Name))
                 .ForMember(dest => dest.ColorName, opt => opt.MapFrom(src => src.ProductVariant.Color.Name));
 
