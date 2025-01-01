@@ -19,23 +19,23 @@ namespace WeVibe.API.Controllers
             _authService = authService;
             _userService = userService;
         }
-        [HttpPost("{userId}/roles")]
-        public async Task<IActionResult> AssignRoles(string userId, [FromBody] List<string> roles)
-        {
-            var result = await _authService.AssignRolesAsync(userId, roles);
+        //[HttpPost("{userId}/roles")]
+        //public async Task<IActionResult> AssignRoles(string userId, [FromBody] List<string> roles)
+        //{
+        //    var result = await _authService.AssignRolesAsync(userId, roles);
 
-            if (result == "User not found")
-            {
-                return NotFound(result);
-            }
+        //    if (result == "User not found")
+        //    {
+        //        return NotFound(result);
+        //    }
 
-            if (result.StartsWith("Failed"))
-            {
-                return BadRequest(result);
-            }
+        //    if (result.StartsWith("Failed"))
+        //    {
+        //        return BadRequest(result);
+        //    }
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
         [HttpGet("/Get-All-Users")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -52,7 +52,8 @@ namespace WeVibe.API.Controllers
         }
 
         // 2. Get User by ID
-        [HttpGet("{id}")]
+        [HttpGet("/Get-User/{id}")]
+        [SwaggerOperation(Summary = "Get User by ID", Description = "")]
         public async Task<IActionResult> GetUserById(string id)
         {
             var user = await _userService.GetUserByIdAsync(id);
@@ -80,19 +81,21 @@ namespace WeVibe.API.Controllers
         }
 
         // 4. Update User
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(string id, [FromBody] UpdateUserDto dto)
-        {
-            var result = await _userService.UpdateUserAsync(id, dto);
-            if (!result.Success)
-            {
-                return BadRequest(result.Errors);
-            }
-            return Ok("User updated successfully.");
-        }
+        //[HttpPut("{id}")]
+        //[SwaggerOperation(Summary = "Update user (email, roles)", Description = "")]
+        //public async Task<IActionResult> UpdateUser(string id, [FromBody] UpdateUserDto dto)
+        //{
+        //    var result = await _userService.UpdateUserAsync(id, dto);
+        //    if (!result.Success)
+        //    {
+        //        return BadRequest(result.Errors);
+        //    }
+        //    return Ok("User updated successfully.");
+        //}
 
         // 5. Delete User
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Delete user", Description = "")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var result = await _userService.DeleteUserAsync(id);
@@ -105,6 +108,7 @@ namespace WeVibe.API.Controllers
 
         // 6. Change User Role
         [HttpPost("{id}/roles")]
+        [SwaggerOperation(Summary = "Assign roles for user", Description = "")]
         public async Task<IActionResult> ChangeUserRole(string id, [FromBody] List<string> roles)
         {
             var result = await _userService.ChangeUserRolesAsync(id, roles);

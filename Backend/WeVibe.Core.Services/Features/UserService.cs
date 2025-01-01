@@ -39,7 +39,7 @@ namespace WeVibe.Core.Services.Features
         {
             var user = new ApplicationUser
             {
-                UserName = createUserDto.UserName,
+                UserName = createUserDto.Email,
                 Email = createUserDto.Email,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now
@@ -67,9 +67,6 @@ namespace WeVibe.Core.Services.Features
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user == null) return (false, new List<string> { "User not found." });
-
-            user.UserName = dto.UserName;
-            user.Email = dto.Email;
 
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded) return (false, result.Errors.Select(e => e.Description).ToList());

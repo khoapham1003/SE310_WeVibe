@@ -21,7 +21,7 @@ const Login = () => {
         password: password,
       };
 
-      const response = await fetch("https://localhost:7180/login", {
+      const response = await fetch("https://localhost:7180/api/Auth/login", {
         method: "POST",
         mode: "cors",
         headers: {

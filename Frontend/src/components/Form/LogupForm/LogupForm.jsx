@@ -57,7 +57,7 @@ function Logup() {
       };
       console.log("Failed:", requestBody);
 
-      const response = await fetch("https://localhost:7180/register", {
+      const response = await fetch("https://localhost:7180/api/Auth/register", {
         mode: "cors",
         method: "POST",
         headers: {

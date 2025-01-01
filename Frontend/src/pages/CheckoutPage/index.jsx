@@ -48,12 +48,11 @@ function CheckoutPage() {
     const fetchCheckOutData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:7180/order-item/orderdata/${orderId}`,
+          `https://localhost:7180/api/Order/order/${orderId}`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${jwtToken}`,
             },
           }
         );
@@ -63,8 +62,8 @@ function CheckoutPage() {
         }
 
         const data = await response.json();
-        console.log(data);
-        setItems(data);
+        setItems(data.orderItems);
+
         return data;
       } catch (error) {
         console.error("Error fetching product data:", error);
@@ -74,25 +73,11 @@ function CheckoutPage() {
   }, []);
 
   const calculateTotalPrice = () => {
+
     return items.reduce(
-      (total, item) =>
-        total + item.productVariant.product.price * item.quantity,
+      (total, item) => total + item.unitPrice * item.quantity,
       0
     );
-  };
-
-  const calculateTotalDiscount = () => {
-    let totalDiscount = 0;
-    items.forEach((item) => {
-      if (item.productVariant.product.discount > 0) {
-        totalDiscount +=
-          (item.productVariant.product.price *
-            item.quantity *
-            item.productVariant.product.discount) /
-          100;
-      }
-    });
-    return totalDiscount;
   };
 
   let totalPrice = calculateTotalPrice();
@@ -100,41 +85,35 @@ function CheckoutPage() {
   const calculateTotalPayment = () => {
     totalPrice *= 1 - voucherDiscount / 100;
     totalPrice += shippingFee;
-    totalPrice -= calculateTotalDiscount();
     return totalPrice;
   };
 
   const handleConfirmPayment = async () => {
     try {
       const data = {
-        lastName: order.lastName,
-        middleName: order.middleName,
-        firstName: order.firstName,
-        phoneNumber: order.phoneNumber,
-        email: order.email,
-        line1: order.line1,
-        line2: order.line2,
-        city: order.city,
-        province: order.province,
-        country: order.country,
-        status: "PENDING",
-        subTotal: totalPrice,
-        totalDiscount: calculateTotalDiscount(),
-        shippingFee: shippingFee,
-        grandTotal: calculateTotalPayment(),
+        address:
+          order.line1 +
+          " " +
+          order.line2 +
+          " " +
+          order.city +
+          " " +
+          order.province +
+          " " +
+          order.country,
+        recipientName:
+          order.firstName + " " + order.middleName + " " + order.lastName,
+        paymentMethod: "COD ",
+        orderId: orderId,
       };
       console.log(data);
-      const response = await fetch(
-        `http://localhost:7180/orders/${cartId}/${orderId}/complete`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`,
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch(`https://localhost:7180/api/Transaction`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
       console.log("Response:", response);
 
@@ -143,7 +122,7 @@ function CheckoutPage() {
       }
       message.success(`Đặt hàng thành công.`);
       setShowConfirmationPay(false);
-      navigate("/");
+       navigate("/");
     } catch (error) {
       console.error("Error placing the order:", error);
     }
@@ -304,30 +283,30 @@ function CheckoutPage() {
         </div>
         <div className="cop_cartlist_item">
           {items.map((item) => (
-            <Card className="cop_item_cart" key={item._id}>
+            <Card className="cop_item_cart" key={item.orderItemId}>
               <Row align="middle">
                 <Col md={2} offset={1}>
-                  <Image
+                  {/* <Image
                     style={{
                       height: 80,
                       width: 80,
                     }}
-                    alt={item.productVariant.product.title}
+                    alt={item.productVariant.product.name}
                     src={item.productVariant.product.picture}
-                  />
+                  /> */}
                 </Col>
                 <Col md={8}>
-                  <span>{item.productVariant.product.title}</span>
+                  <span>{item.productName}</span>
                 </Col>
                 <Col md={3} offset={1}>
-                  <span>{item.productVariant.product.price}đ</span>
+                  <span>{item.unitPrice}đ</span>
                 </Col>
                 <Col md={3} offset={1}>
                   <span>{item.quantity}</span>
                 </Col>
                 <Col md={3} offset={1}>
                   <span className="cop_item_price">
-                    {item.productVariant.product.price * item.quantity}đ
+                    {item.unitPrice * item.quantity}đ
                   </span>
                 </Col>
               </Row>
@@ -344,9 +323,6 @@ function CheckoutPage() {
             </List.Item>
             <List.Item>
               <span>Phí vận chuyển: {shippingFee}đ</span>
-            </List.Item>
-            <List.Item>
-              <span>Tổng giảm giá: {calculateTotalDiscount()}đ</span>
             </List.Item>
             <List.Item>
               <span style={{ fontWeight: "500", fontStyle: "italic" }}>
@@ -377,14 +353,9 @@ function CheckoutPage() {
                       message.error(
                         "Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0"
                       );
-                    } else {
-                      if (!promotionalCode) {
-                        setShowConfirmationPay(true);
-                      } else if (isApply) {
-                        setShowConfirmationPay(true);
-                      } else {
-                        message.error("Vui lòng xác nhận voucher!");
-                      }
+                    }
+                    else {
+                      setShowConfirmationPay(true);
                     }
                   } else {
                     message.error("Vui lòng nhập đầy đủ thông tin người nhận!");
