@@ -38,7 +38,8 @@ namespace WeVibe.Core.Services.Features
                 TotalAmount = totalAmount,
                 Status = "Pending",
                 UserId = userId,
-                AddressValue = "",
+                AddressValue = string.Empty, 
+                RecipientName = "Unknown Recipient",
                 OrderItems = cart.CartItems.Select(ci => new OrderItem
                 {
                     ProductId = ci.ProductVariant.ProductId,
@@ -49,6 +50,9 @@ namespace WeVibe.Core.Services.Features
             };
 
             await _orderRepository.AddAsync(order);
+
+            cart.CartItems.Clear();
+            await _cartRepository.UpdateAsync(cart);
 
             var orderDto = new OrderDto
             {
