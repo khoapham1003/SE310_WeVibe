@@ -61,6 +61,7 @@ namespace WeVibe.Core.Services.Features
                 Status = order.Status,
                 UserId = order.UserId,
                 AddressValue = order.AddressValue,
+                RecipientName = order.RecipientName,
                 OrderItems = order.OrderItems.Select(oi => new OrderItemDto
                 {
                     OrderItemId = oi.OrderItemId,

@@ -17,7 +17,7 @@ namespace WeVibe.API.Controllers
         {
             _orderService = orderService;
         }
-        [HttpPost]
+        [HttpPost("create-order")]
         public async Task<IActionResult> CreateOrder()
         {
             try
