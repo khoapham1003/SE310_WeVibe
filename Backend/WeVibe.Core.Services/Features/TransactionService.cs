@@ -3,7 +3,6 @@ using WeVibe.Core.Contracts.Transaction;
 using WeVibe.Core.Domain.Entities;
 using WeVibe.Core.Domain.Repositories;
 using WeVibe.Core.Services.Abstractions.Features;
-using WeVibe.Infrastructure.Persistence.Repositories;
 
 namespace WeVibe.Core.Services.Features
 {
@@ -32,6 +31,7 @@ namespace WeVibe.Core.Services.Features
             }
 
             order.AddressValue = createTransactionDto.Address;
+            order.RecipientName = createTransactionDto.RecipientName;
 
             await _orderRepository.UpdateAsync(order);
             await _orderRepository.SaveAsync();

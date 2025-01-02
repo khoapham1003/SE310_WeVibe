@@ -11,5 +11,6 @@ namespace WeVibe.Core.Services.Abstractions.Features
         Task<ProductDto> GetProductByIdAsync(int productId);
         Task<ProductDetailDto> GetProductDetailByIdAsync(int productId);
         Task<IEnumerable<ProductDto>> GetProductsByCategoryAsync(int categoryId);
+        Task<List<ProductDto>> SearchProductsByNameAsync(string searchString);
     }
 }

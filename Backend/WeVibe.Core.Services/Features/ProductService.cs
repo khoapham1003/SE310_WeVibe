@@ -180,7 +180,8 @@ namespace WeVibe.Core.Services.Features
                     SizeName = pv.Size.Name,
                     ColorName = pv.Color.Name,
                     ColorHex = pv.Color.Hex,
-                    Quantity = pv.Quantity
+                    Quantity = pv.Quantity,
+                    Price = pv.Price,
                 }).ToList()
             };
 
@@ -197,6 +198,21 @@ namespace WeVibe.Core.Services.Features
 
             return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
+        public async Task<List<ProductDto>> SearchProductsByNameAsync(string searchString)
+        {
+            if (string.IsNullOrWhiteSpace(searchString))
+            {
+                throw new ArgumentException("Search string cannot be empty.", nameof(searchString));
+            }
 
+            var products = await _productRepository.SearchProductsByNameAsync(searchString);
+
+            if (!products.Any())
+            {
+                throw new Exception($"No products found containing '{searchString}'.");
+            }
+
+            return _mapper.Map<List<ProductDto>>(products);
+        }
     }
 }
