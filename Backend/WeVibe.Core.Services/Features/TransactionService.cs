@@ -46,7 +46,7 @@ namespace WeVibe.Core.Services.Features
             {
                 transaction.Status = "Pending";
             }
-
+            await _transactionRepository.AddAsync(transaction);
             await _transactionRepository.SaveAsync();
 
             return _mapper.Map<TransactionDto>(transaction);
