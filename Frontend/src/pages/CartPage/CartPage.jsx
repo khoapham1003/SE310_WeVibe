@@ -147,7 +147,7 @@ function CartPage() {
           mode: "cors",
           method: "PUT",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json; charset=utf-8",
             Authorization: `Bearer ${jwtToken}`,
           },
           body: JSON.stringify(requestData),
@@ -232,8 +232,8 @@ function CartPage() {
                     height: 80,
                     width: 80,
                   }}
-                  src={item.productVariant.product.picture}
-                  alt={item.title}
+                  src={`https://localhost:7180/static${item.productVariant.product.images[0].imagePath}`} 
+                  alt={item.name}
                 />
               </Col>
               <Col md={8}>

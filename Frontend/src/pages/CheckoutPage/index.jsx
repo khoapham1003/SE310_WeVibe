@@ -62,6 +62,7 @@ function CheckoutPage() {
         }
 
         const data = await response.json();
+        console.log(data);
         setItems(data.orderItems);
 
         return data;
@@ -73,7 +74,6 @@ function CheckoutPage() {
   }, []);
 
   const calculateTotalPrice = () => {
-
     return items.reduce(
       (total, item) => total + item.unitPrice * item.quantity,
       0
@@ -122,7 +122,7 @@ function CheckoutPage() {
       }
       message.success(`Đặt hàng thành công.`);
       setShowConfirmationPay(false);
-       navigate("/");
+      navigate("/");
     } catch (error) {
       console.error("Error placing the order:", error);
     }
@@ -286,17 +286,17 @@ function CheckoutPage() {
             <Card className="cop_item_cart" key={item.orderItemId}>
               <Row align="middle">
                 <Col md={2} offset={1}>
-                  {/* <Image
+                  <Image
                     style={{
                       height: 80,
                       width: 80,
                     }}
-                    alt={item.productVariant.product.name}
-                    src={item.productVariant.product.picture}
-                  /> */}
+                    src={`https://localhost:7180/static${item.product.images[0].imagePath}`}
+                    alt={item.product.name}
+                  />
                 </Col>
                 <Col md={8}>
-                  <span>{item.productName}</span>
+                  <span>{item.product.name}</span>
                 </Col>
                 <Col md={3} offset={1}>
                   <span>{item.unitPrice}đ</span>
@@ -353,8 +353,7 @@ function CheckoutPage() {
                       message.error(
                         "Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0"
                       );
-                    }
-                    else {
+                    } else {
                       setShowConfirmationPay(true);
                     }
                   } else {

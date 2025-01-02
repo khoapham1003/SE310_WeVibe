@@ -69,50 +69,28 @@ const FilteredPage = () => {
       <div className="card_container">
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
-        {!loading && !error && Array.isArray(items) && items.length > 0 ? (
-          items.map((item) => (
-            <Card
-              className="card_item"
-              key={item.id}
-              hoverable
-              bodyStyle={{ padding: "10px 24px" }}
-              cover={
-                <img
-                  className="mp_product_item_image"
-                  alt={item.title}
-                  src={item.picture}
-                />
-              }
-              onClick={() => handleProductClick(item)}
-            >
-              <div className="flex_column">
-                <div className="title_start_container">
-                  <span className="product_title">{item.title}</span>
-                  {/* <Rate
-                    disabled
-                    className="product_star"
-                    defaultValue={item.dProduct_start_count}
-                  /> */}
-                </div>
-                <span className="product_price">
-                  {item.price}
-                  <span
-                    style={{
-                      verticalAlign: "super",
-                      fontSize: "10px",
-                      textDecoration: "underline",
-                      marginLeft: "2px",
-                    }}
-                  >
-                    đ
-                  </span>
-                </span>
+        {items.map((item) => (
+          <Card
+            className="card_item"
+            key={item.name}
+            hoverable
+            bodyStyle={{ padding: "10px 24px" }}
+            cover={
+              <img
+                className="mp_product_item_image"
+                src={`https://localhost:7180/static${item.images[0].imagePath}`}
+                alt={item.name}
+              />
+            }
+            onClick={() => handleCardClick(item)}
+          >
+            <div className="flex_column">
+              <div className="title_start_container">
+                <span className="book_title">{item.name}</span>
               </div>
-            </Card>
-          ))
-        ) : (
-          <p>No items available.</p>
-        )}
+            </div>
+          </Card>
+        ))}
       </div>
     </div>
   );

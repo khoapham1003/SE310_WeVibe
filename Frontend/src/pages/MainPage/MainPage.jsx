@@ -86,7 +86,7 @@ function MainPage() {
             cover={
               <img
                 className="mp_product_item_image"
-                src={`https://localhost:7180/static${item.images[0].imagePath}`} 
+                src={`https://localhost:7180/static${item.images[0].imagePath}`}
                 alt={item.name}
               />
             }
@@ -96,19 +96,6 @@ function MainPage() {
               <div className="title_start_container">
                 <span className="book_title">{item.name}</span>
               </div>
-              <span className="book_price">
-                {item.price}
-                <span
-                  style={{
-                    verticalAlign: "super",
-                    fontSize: "10px",
-                    textDecoration: "underline",
-                    marginLeft: "2px",
-                  }}
-                >
-                  đ
-                </span>
-              </span>
             </div>
           </Card>
         ))}

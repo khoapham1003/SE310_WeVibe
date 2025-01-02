@@ -9,22 +9,26 @@ import {
   Input,
   InputNumber,
   Select,
+  Upload,
 } from "antd";
 import React, { useState, useEffect } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { IoMdAdd } from "react-icons/io";
+import { UploadOutlined } from "@ant-design/icons";
 import "./../../../stylePage.css";
 
 const { Option } = Select;
 
 function ProductAdmin() {
   const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [currentItemId, setCurrentItemId] = useState(null);
   const [form] = Form.useForm();
   const [addForm] = Form.useForm();
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const { confirm } = Modal;
 
   const getCookie = (cookieName) => {
@@ -60,11 +64,10 @@ function ProductAdmin() {
       }
       const data = await response.json();
       console.log(data);
-
-      setItems(data.data);
+      setItems(data.products);
+      setCategories(data.categories);
     } catch (error) {
       console.error("Error fetching product data:", error);
-      throw error; // Propagate the error to handle it in the calling code
     }
   };
 
@@ -76,7 +79,6 @@ function ProductAdmin() {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            token: `Bearer ${jwtToken}`,
           },
         }
       );
@@ -98,12 +100,11 @@ function ProductAdmin() {
   const editProduct = async (ItemId, requestBody) => {
     try {
       const response = await fetch(
-        `https://localhost:7180/api/Product/${ItemId}`,
+        `https://localhost:7180/api/ProductVariant`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
-            token: `Bearer ${jwtToken}`,
           },
           body: JSON.stringify(requestBody),
         }
@@ -121,13 +122,25 @@ function ProductAdmin() {
 
   const addProduct = async (requestBody) => {
     try {
+      const formData = new FormData();
+
+      // Thêm các trường dữ liệu vào FormData
+      formData.append("Name", requestBody.name);
+      formData.append("Slug", requestBody.slug);
+      formData.append("Description", requestBody.description);
+      formData.append("CategoryId", requestBody.categoryId);
+
+      // Thêm ảnh vào FormData
+      requestBody.images.forEach((image) => {
+        formData.append("Images", image); // Đảm bảo `image` là một đối tượng Blob hoặc File
+      });
+
       const response = await fetch("https://localhost:7180/api/Product", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          token: `Bearer ${jwtToken}`,
+          Authorization: `Bearer ${jwtToken}`,
         },
-        body: JSON.stringify(requestBody),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -142,15 +155,18 @@ function ProductAdmin() {
 
   const showEditForm = (ItemId) => {
     setCurrentItemId(ItemId);
-    const item = items.find((i) => i._id === ItemId);
+    const item = items.find((i) => i.productId === ItemId);
+
+    // Set lại các giá trị cho form
     form.setFieldsValue({
-      name: item.name,
+      productId: item.productId,
+      sizeName: item.sizeName,
+      colorName: item.colorName,
+      colorHex: item.colorHex,
       price: item.price,
-      countInStock: item.countInStock,
-      description: item.description,
-      image: item.image,
-      type: item.type,
+      quantity: item.quantity,
     });
+
     setIsEditModalVisible(true);
   };
 
@@ -170,17 +186,19 @@ function ProductAdmin() {
     setIsEditModalVisible(false);
   };
 
-  const showAddForm = () => {
-    setIsAddModalVisible(true);
-  };
-
   const handleAddOk = () => {
     addForm
       .validateFields()
       .then((values) => {
-        addProduct(values);
+        const requestBody = {
+          name: values.name,
+          slug: values.slug,
+          description: values.description,
+          categoryId: values.categoryId,
+          images: uploadedFiles,
+        };
+        addProduct(requestBody);
         setIsAddModalVisible(false);
-        addForm.resetFields();
       })
       .catch((info) => {
         console.log("Validate Failed:", info);
@@ -208,9 +226,16 @@ function ProductAdmin() {
     });
   };
 
+  const handleUploadChange = ({ fileList }) => {
+    setUploadedFiles(fileList.map((file) => file.originFileObj));
+  };
+
   return (
     <div>
-      <Button onClick={showAddForm} className="profilepage_button admin_button">
+      <Button
+        onClick={() => setIsAddModalVisible(true)}
+        className="profilepage_button admin_button"
+      >
         <IoMdAdd />
         <em />
         <strong> ADD PRODUCT</strong>
@@ -221,9 +246,6 @@ function ProductAdmin() {
         </Col>
         <Col md={4}></Col>
         <Col md={3} offset={1}>
-          <h3>Đơn giá</h3>
-        </Col>
-        <Col md={3} offset={1}>
           <h3>Số lượng</h3>
         </Col>
         <Col md={3} offset={1}>
@@ -232,36 +254,31 @@ function ProductAdmin() {
       </div>
       <div className="cop_cartlist_item">
         {items.map((item) => (
-          <Card className="cop_item_cart" key={item._id}>
+          <Card className="cop_item_cart" key={item.productId}>
             <Row align="middle">
               <Col md={2} offset={1}>
                 <Image
-                  style={{
-                    height: 80,
-                    width: 80,
-                  }}
+                  style={{ height: 80, width: 80 }}
+                  src={`https://localhost:7180/static${item.images[0].imagePath}`}
                   alt={item.name}
-                  src={item.image}
                 />
               </Col>
               <Col md={4} offset={1}>
                 <span>{item.name}</span>
               </Col>
+
               <Col md={3} offset={1}>
-                <span>{item.price}đ</span>
+                <span>{item.quantity}</span>
               </Col>
               <Col md={3} offset={1}>
-                <span>{item.countInStock}</span>
-              </Col>
-              <Col md={3} offset={1}>
-                <span className="cop_item_price">{item.type}</span>
+                <span>{item.categoryName}</span>
               </Col>
               <Col md={3} offset={1}>
                 <span>
-                  <Button onClick={() => showConfirm(item._id)}>
+                  <Button onClick={() => showConfirm(item.productId)}>
                     <FaTrash />
                   </Button>
-                  <Button onClick={() => showEditForm(item._id)}>
+                  <Button onClick={() => showEditForm(item.productId)}>
                     <FaEdit />
                   </Button>
                 </span>
@@ -279,10 +296,29 @@ function ProductAdmin() {
         cancelText="Hủy bỏ"
       >
         <Form form={form} layout="vertical" name="edit_product_form">
+          <Form.Item name="productId" label="Mã sản phẩm" hidden>
+            <Input />
+          </Form.Item>
           <Form.Item
-            name="name"
-            label="Tên sản phẩm"
-            rules={[{ required: true, message: "Vui lòng nhập tên sản phẩm!" }]}
+            name="sizeName"
+            label="Tên kích thước"
+            rules={[
+              { required: true, message: "Vui lòng nhập tên kích thước!" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="colorName"
+            label="Tên màu sắc"
+            rules={[{ required: true, message: "Vui lòng nhập tên màu sắc!" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="colorHex"
+            label="Mã màu (Hex)"
+            rules={[{ required: true, message: "Vui lòng nhập mã màu!" }]}
           >
             <Input />
           </Form.Item>
@@ -294,22 +330,13 @@ function ProductAdmin() {
             <InputNumber min={0} style={{ width: "100%" }} />
           </Form.Item>
           <Form.Item
-            name="countInStock"
-            label="Số lượng trong kho"
+            name="quantity"
+            label="Số lượng"
             rules={[
-              { required: true, message: "Vui lòng nhập số lượng trong kho!" },
+              { required: true, message: "Vui lòng nhập số lượng sản phẩm!" },
             ]}
           >
             <InputNumber min={0} style={{ width: "100%" }} />
-          </Form.Item>
-          <Form.Item
-            name="description"
-            label="Mô tả"
-            rules={[
-              { required: true, message: "Vui lòng nhập mô tả sản phẩm!" },
-            ]}
-          >
-            <Input.TextArea rows={4} />
           </Form.Item>
         </Form>
       </Modal>
@@ -322,62 +349,33 @@ function ProductAdmin() {
         cancelText="Hủy bỏ"
       >
         <Form form={addForm} layout="vertical" name="add_product_form">
-          <Form.Item
-            name="name"
-            label="Tên sản phẩm"
-            rules={[{ required: true, message: "Vui lòng nhập tên sản phẩm!" }]}
-          >
-            <Input />
+          <Form.Item name="name" label="Tên sản phẩm">
+            <Input placeholder="Nhập tên sản phẩm" />
           </Form.Item>
-          <Form.Item
-            name="image"
-            label="Hình ảnh"
-            rules={[
-              { required: true, message: "Vui lòng nhập link hình ảnh!" },
-            ]}
-          >
-            <Input />
+          <Form.Item name="slug" label="Slug">
+            <Input placeholder="Nhập slug " />
           </Form.Item>
-          <Form.Item
-            name="type"
-            label="Loại"
-            rules={[
-              { required: true, message: "Vui lòng chọn loại sản phẩm!" },
-            ]}
-          >
-            <Select>
-              <Option value="ring">Nhẫn</Option>
-              <Option value="necklace">Vòng Cổ</Option>
-              <Option value="pendant">Dây Chuyền</Option>
-              <Option value="earing">Khuyên Tai</Option>
-              <Option value="bracelet">Lắc Tay</Option>
-              <Option value="bangle">Vòng Tay</Option>
+          <Form.Item name="description" label="Mô tả">
+            <Input.TextArea rows={4} placeholder="Nhập mô tả sản phẩm " />
+          </Form.Item>
+          <Form.Item name="categoryId" label="Danh mục">
+            <Select placeholder="Chọn danh mục" style={{ width: "100%" }}>
+              {categories.map((category) => (
+                <Option key={category.categoryId} value={category.categoryId}>
+                  {category.name}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
-          <Form.Item
-            name="price"
-            label="Giá"
-            rules={[{ required: true, message: "Vui lòng nhập giá sản phẩm!" }]}
-          >
-            <InputNumber min={0} style={{ width: "100%" }} />
-          </Form.Item>
-          <Form.Item
-            name="countInStock"
-            label="Số lượng trong kho"
-            rules={[
-              { required: true, message: "Vui lòng nhập số lượng trong kho!" },
-            ]}
-          >
-            <InputNumber min={0} style={{ width: "100%" }} />
-          </Form.Item>
-          <Form.Item
-            name="description"
-            label="Mô tả"
-            rules={[
-              { required: true, message: "Vui lòng nhập mô tả sản phẩm!" },
-            ]}
-          >
-            <Input.TextArea rows={4} />
+          <Form.Item name="image" label="Hình ảnh">
+            <Upload
+              action="/upload.do"
+              listType="picture"
+              fileList={uploadedFiles}
+              onChange={handleUploadChange}
+            >
+              <Button icon={<UploadOutlined />}>Tải lên hình ảnh</Button>
+            </Upload>
           </Form.Item>
         </Form>
       </Modal>
