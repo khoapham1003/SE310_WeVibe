@@ -45,5 +45,21 @@ namespace WeVibe.Infrastructure.Persistence.Repositories
                 .Include(o => o.Transaction)
                 .FirstOrDefaultAsync();
         }
+        public async Task<List<Order>> GetAllWithDetailsAsync()
+        {
+            return await _context.Orders
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                        .ThenInclude(p => p.Images)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.ProductVariant)
+                        .ThenInclude(pv => pv.Size)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.ProductVariant)
+                        .ThenInclude(pv => pv.Color)
+                .Include(o => o.Transaction)
+                .ToListAsync();
+        }
+
     }
 }

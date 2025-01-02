@@ -45,10 +45,9 @@ function UserAdmin() {
 
   const fetchProductData = async () => {
     try {
-      const response = await fetch("http://localhost:7180/user/getAll", {
+      const response = await fetch("https://localhost:7180/Get-All-Users", {
         headers: {
           "Content-Type": "application/json",
-          token: `Bearer ${jwtToken}`,
         },
       });
 
@@ -58,7 +57,7 @@ function UserAdmin() {
       const data = await response.json();
       console.log(data);
 
-      setItems(data.data);
+      setItems(data);
     } catch (error) {
       console.error("Error fetching product data:", error);
       throw error; // Propagate the error to handle it in the calling code
@@ -68,12 +67,11 @@ function UserAdmin() {
   const removeProduct = async (UserId) => {
     try {
       const response = await fetch(
-        `http://localhost:7180/user/delete-user/${UserId}`,
+        `https://localhost:7180/Delete-User/${UserId}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            token: `Bearer ${jwtToken}`,
           },
         }
       );
@@ -128,23 +126,27 @@ function UserAdmin() {
       </div>
       <div className="cop_cartlist_item">
         {items.map((item) => (
-          <Card className="cop_item_cart" key={item._id}>
+          <Card className="cop_item_cart" key={item.id}>
             <Row align="middle">
               <Col md={5} offset={1}>
-                <span>{item.name}</span>
+                <span>{`${item.firstName} ${item.lastName}`}</span>
               </Col>
               <Col md={3}>
-                <span>{item.phone}</span>
+                <span>
+                  {item.phoneNumber
+                    ? item.phoneNumber
+                    : "Không có số điện thoại"}
+                </span>
               </Col>
               <Col md={3} offset={1}>
                 <span className="cop_item_price">{item.email}</span>
               </Col>
               <Col md={6} offset={1}>
-                <span>{item.address}</span>
+                <span>{item.address ? item.address : "Không có địa chỉ"}</span>
               </Col>
               <Col md={3} offset={1}>
                 <span>
-                  <Button onClick={() => showConfirm(item._id)}>
+                  <Button onClick={() => showConfirm(item.id)}>
                     <FaTrash />
                   </Button>
                 </span>

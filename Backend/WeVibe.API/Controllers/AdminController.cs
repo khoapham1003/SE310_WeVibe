@@ -1,41 +1,26 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using WeVibe.Core.Contracts.Order;
 using WeVibe.Core.Contracts.User;
 using WeVibe.Core.Services.Abstractions.Features;
 using WeVibe.Core.Services.Features;
 
 namespace WeVibe.API.Controllers
 {
-    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class AdminController : Controller
     {
         private readonly IAuthService _authService;
         private readonly IUserService _userService;
-        public AdminController(IAuthService authService, IUserService userService) 
+        private readonly IOrderService _orderService;
+        public AdminController(IAuthService authService, IUserService userService, IOrderService orderService) 
         { 
             _authService = authService;
             _userService = userService;
+            _orderService = orderService;
         }
-        //[HttpPost("{userId}/roles")]
-        //public async Task<IActionResult> AssignRoles(string userId, [FromBody] List<string> roles)
-        //{
-        //    var result = await _authService.AssignRolesAsync(userId, roles);
-
-        //    if (result == "User not found")
-        //    {
-        //        return NotFound(result);
-        //    }
-
-        //    if (result.StartsWith("Failed"))
-        //    {
-        //        return BadRequest(result);
-        //    }
-
-        //    return Ok(result);
-        //}
         [HttpGet("/Get-All-Users")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -80,21 +65,8 @@ namespace WeVibe.API.Controllers
             }
         }
 
-        // 4. Update User
-        //[HttpPut("{id}")]
-        //[SwaggerOperation(Summary = "Update user (email, roles)", Description = "")]
-        //public async Task<IActionResult> UpdateUser(string id, [FromBody] UpdateUserDto dto)
-        //{
-        //    var result = await _userService.UpdateUserAsync(id, dto);
-        //    if (!result.Success)
-        //    {
-        //        return BadRequest(result.Errors);
-        //    }
-        //    return Ok("User updated successfully.");
-        //}
-
         // 5. Delete User
-        [HttpDelete("{id}")]
+        [HttpDelete("/Delete-User/{id}")]
         [SwaggerOperation(Summary = "Delete user", Description = "")]
         public async Task<IActionResult> DeleteUser(string id)
         {
@@ -119,5 +91,33 @@ namespace WeVibe.API.Controllers
             return Ok("Roles updated successfully.");
         }
 
+        [HttpGet("Get-All-Orders")]
+        [SwaggerOperation(Summary = "Get All Orders", Description = "")]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            try
+            {
+                var orders = await _orderService.GetAllOrdersAsync();
+                return Ok(orders);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }            
+        }
+        [HttpPut("{orderId}/status")]
+        [SwaggerOperation(Summary = "Update Order Status", Description = "")]
+        public async Task<IActionResult> UpdateOrderStatus(int orderId, [FromBody] UpdateOrderStatusDto dto)
+        {
+            try
+            {
+                var updatedOrder = await _orderService.UpdateOrderStatusAsync(orderId, dto.Status);
+                return Ok(updatedOrder);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

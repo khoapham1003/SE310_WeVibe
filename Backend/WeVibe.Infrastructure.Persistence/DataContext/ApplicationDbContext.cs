@@ -81,7 +81,7 @@ namespace WeVibe.Infrastructure.Persistence.DataContext
                 .HasMany(o => o.OrderItems)
                 .WithOne(oi => oi.Order)
                 .HasForeignKey(oi => oi.OrderId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Configure Product -> ProductImage (one-to-many)
             modelBuilder.Entity<Product>()

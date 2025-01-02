@@ -180,6 +180,7 @@ namespace WeVibe.Core.Services.Features
                     SizeName = pv.Size.Name,
                     ColorName = pv.Color.Name,
                     ColorHex = pv.Color.Hex,
+                    Price = pv.Price,
                     Quantity = pv.Quantity
                 }).ToList()
             };

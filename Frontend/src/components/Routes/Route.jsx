@@ -45,7 +45,7 @@ function AppRoutes() {
         throw new Error("Invalid token format");
       }
       const decodedToken = JSON.parse(atob(tokenParts[1]));
-      return decodedToken && (decodedToken.role === 'admin') === true;
+      return decodedToken && (decodedToken.Role === 'Admin') === true;
     }
     return false;
   };

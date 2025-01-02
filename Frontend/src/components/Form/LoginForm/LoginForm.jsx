@@ -42,15 +42,13 @@ const Login = () => {
         if (accessToken) {
           try {
             const decodedToken = JSON.parse(atob(accessToken.split(".")[1]));
-            const CartId = decodedToken.CartId;
             const UserId = decodedToken.UserId;
-            const role = decodedToken.role;
+            const role = decodedToken.Role;
             document.cookie = `accessToken=${responseData.token}; path=/`;
-            document.cookie = `CartId=${CartId}; path=/`;
             document.cookie = `userid=${UserId}; path=/`;
             document.cookie = `role=${role}; path=/`;
             message.success("Đăng nhập thành công!");
-            if (role == "admin") {
+            if (role == "Admin") {
               navigate(`/admin`);
             } else {
               navigate(`/`);

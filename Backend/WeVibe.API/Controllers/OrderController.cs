@@ -17,27 +17,6 @@ namespace WeVibe.API.Controllers
         {
             _orderService = orderService;
         }
-
-        [HttpGet("order/{orderId}")]
-        [SwaggerOperation(Summary = "Get order by ID", Description = "Retrieve detailed information about a specific order.")]
-        [SwaggerResponse(200, "Order retrieved successfully", typeof(OrderDto))]
-        [SwaggerResponse(401, "Unauthorized - User not found in token.")]
-        [SwaggerResponse(404, "Order not found.")]
-        public async Task<IActionResult> GetOrderById(int orderId)
-        {
-            try
-            {
-
-                var orderDetail = await _orderService.GetOrderByIdAsync(orderId);
-
-                return Ok(orderDetail);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-
         [HttpPost("create-order")]
         [SwaggerOperation(Summary = "Create a new order", Description = "Creates an order for the logged-in user.")]
         [SwaggerResponse(200, "Order created successfully", typeof(OrderDto))]
