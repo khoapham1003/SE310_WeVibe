@@ -44,5 +44,14 @@ namespace WeVibe.Infrastructure.Persistence.Repositories
                 .Where(p => p.CategoryId == categoryId)
                 .ToListAsync();
         }
+        public async Task<List<Product>> SearchProductsByNameAsync(string searchString)
+        {
+            return await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Images)
+                .Where(p => EF.Functions.Like(p.Name.ToLower(), $"%{searchString.ToLower()}%"))
+                .ToListAsync();
+        }
+
     }
 }

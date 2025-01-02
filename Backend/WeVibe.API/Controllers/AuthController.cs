@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Security.Claims;
 using WeVibe.Core.Contracts.Auth;
 using WeVibe.Core.Contracts.User;
 using WeVibe.Core.Services.Abstractions.Features;
@@ -50,10 +48,9 @@ namespace WeVibe.API.Controllers
         }
         [HttpPost("change-password")]
         [SwaggerOperation(Summary = "User change their password", Description = "User must login")]
-        [Authorize]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto dto)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = dto.UserId;
             await _authService.ChangePasswordAsync(userId, dto.CurrentPassword, dto.NewPassword);
             return Ok("Password changed successfully.");
         }

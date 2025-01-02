@@ -4,7 +4,6 @@ using Swashbuckle.AspNetCore.Annotations;
 using WeVibe.Core.Contracts.Order;
 using WeVibe.Core.Contracts.User;
 using WeVibe.Core.Services.Abstractions.Features;
-using WeVibe.Core.Services.Features;
 
 namespace WeVibe.API.Controllers
 {

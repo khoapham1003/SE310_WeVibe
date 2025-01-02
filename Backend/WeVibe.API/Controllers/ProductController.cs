@@ -135,5 +135,19 @@ namespace WeVibe.API.Controllers
                 return NotFound(new { message = ex.Message });
             }
         }
+        [HttpGet("search")]
+        [SwaggerOperation(Summary = "Search products by name", Description = "Retrieve all products containing the given letters in their name.")]
+        public async Task<IActionResult> SearchProductsByName([FromQuery] string searchString)
+        {
+            try
+            {
+                var products = await _productService.SearchProductsByNameAsync(searchString);
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+        }
     }
 }
