@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WeVibe.Core.Contracts.Cart;
 using WeVibe.Core.Services.Abstractions.Features;
@@ -7,6 +8,7 @@ namespace WeVibe.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CartController : Controller
     {
         private readonly ICartService _cartService;

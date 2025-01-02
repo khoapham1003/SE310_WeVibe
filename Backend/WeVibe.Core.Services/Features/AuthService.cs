@@ -12,12 +12,16 @@ namespace WeVibe.Core.Services.Features
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ITokenService _tokenService;
+        private readonly IEmailService _emailService;
 
-        public AuthService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ITokenService tokenService)
+        public AuthService(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            ITokenService tokenService, IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            _emailService = emailService;
         }
         public async Task<IdentityResult> RegisterAsync(RegisterDto registerDto)
         {
@@ -68,6 +72,91 @@ namespace WeVibe.Core.Services.Features
         {
             var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
             return emailRegex.IsMatch(email);
+        }
+
+        public async Task<string> GenerateResetPasswordTokenAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            return await _userManager.GeneratePasswordResetTokenAsync(user);
+        }
+
+        public async Task ResetPasswordAsync(string email, string token, string newPassword)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, token, newPassword);
+            if (!result.Succeeded)
+            {
+                var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+                throw new Exception($"Password reset failed: {errors}");
+            }
+        }
+        public async Task ChangePasswordAsync(string userId, string currentPassword, string newPassword)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+            if (!result.Succeeded)
+            {
+                var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+                throw new Exception($"Password change failed: {errors}");
+            }
+        }
+        public async Task SendResetPasswordEmailAsync(string email, string resetUrlBase)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var resetUrl = $"{resetUrlBase}?email={Uri.EscapeDataString(email)}&token={Uri.EscapeDataString(token)}";
+
+            var emailBody = $@"
+                                <h1>Reset Your Password</h1>
+                                <p>Click the link below to reset your password:</p>
+                                <a href='{resetUrl}'>Reset Password</a>";
+
+            await _emailService.SendEmailAsync(email, "Password Reset Request", emailBody);
+        }
+        public async Task<string> AssignRolesAsync(string userId, List<string> roles)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return "User not found";
+            }
+
+            var currentRoles = await _userManager.GetRolesAsync(user);
+            var removeResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+
+            if (!removeResult.Succeeded)
+            {
+                return "Failed to remove old roles";
+            }
+
+            var addResult = await _userManager.AddToRolesAsync(user, roles);
+            if (!addResult.Succeeded)
+            {
+                return "Failed to add new roles";
+            }
+
+            return "Roles updated successfully";
         }
     }
 }

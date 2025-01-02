@@ -24,13 +24,13 @@ namespace WeVibe.Core.Services.Features
 
         public async Task<CartDto> GetCartByUserIdAsync(string userId)
         {
-            var cart = await _cartRepository.GetCartByUserIdAsync(userId);
+            var cart = await _cartRepository.GetCartWithItemsByUserIdAsync(userId);
 
             if (cart == null) return null;
 
             foreach (var cartItem in cart.CartItems)
             {
-                var productVariant = await _productVariantRepository.GetByIdAsync(cartItem.ProductVariantId);
+                var productVariant = await _productVariantRepository.GetProductVariantByIdAsync(cartItem.ProductVariantId);
                 if (productVariant != null)
                 {
                     cartItem.UnitPrice = productVariant.Price;
@@ -48,22 +48,37 @@ namespace WeVibe.Core.Services.Features
 
             if (cart == null)
             {
-                cart = new Cart { UserId = addToCartDto.UserId };
+                cart = new Cart { UserId = addToCartDto.UserId, CartItems = new List<CartItem>() };
                 await _cartRepository.AddAsync(cart);
             }
 
-            var productVariant = await _productVariantRepository.GetByIdAsync(addToCartDto.ProductVariantId);
+            var productVariant = await _productVariantRepository.GetProductVariantByIdAsync(addToCartDto.ProductVariantId);
             if (productVariant == null) throw new KeyNotFoundException("Product variant not found");
 
-            var cartItem = _mapper.Map<CartItem>(addToCartDto);
-            cartItem.UnitPrice = productVariant.Price;
-            cartItem.Discount = addToCartDto.Discount;
+            var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductVariantId == addToCartDto.ProductVariantId);
 
-            cart.CartItems.Add(cartItem);
+            if (existingCartItem != null)
+            {
+
+                existingCartItem.Quantity += addToCartDto.Quantity;
+                existingCartItem.UnitPrice = productVariant.Price; 
+                existingCartItem.Discount = addToCartDto.Discount;
+            }
+            else
+            {
+                var cartItem = _mapper.Map<CartItem>(addToCartDto);
+                cartItem.ProductVariant = productVariant;
+                cartItem.UnitPrice = productVariant.Price;
+                cartItem.Discount = addToCartDto.Discount;
+                
+                cart.CartItems.Add(cartItem);
+            }
 
             await _cartRepository.SaveAsync();
-            return _mapper.Map<CartDto>(cart); 
+
+            return _mapper.Map<CartDto>(cart);
         }
+
         public async Task<bool> UpdateCartItemAsync(int cartItemId, UpdateCartItemDto updateDto)
         {
             var cartItem = await _cartRepository.GetCartItemByIdAsync(cartItemId);

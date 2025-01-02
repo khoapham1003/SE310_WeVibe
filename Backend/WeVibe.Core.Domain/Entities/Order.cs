@@ -12,6 +12,7 @@ namespace WeVibe.Core.Domain.Entities
         public required string Status { get; set; }
         public required string UserId { get; set; }
         public ApplicationUser User { get; set; }
+        public string RecipientName { get; set; }
         public string AddressValue { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
         public Transaction Transaction { get; set; }

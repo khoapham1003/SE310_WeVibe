@@ -14,6 +14,7 @@ namespace WeVibe.Infrastructure.Persistence.Repositories
         {
             return await _context.ProductVariants
                 .Include(pv => pv.Product)
+                    .ThenInclude(pv => pv.Images)
                 .Include(pv => pv.Size)
                 .Include(pv => pv.Color)
                 .FirstOrDefaultAsync(pv => pv.ProductVariantId == id);

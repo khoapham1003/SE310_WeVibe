@@ -31,7 +31,7 @@ function ProductPage() {
     const fetchreviewsdata = async () => {
       try {
         const response = await fetch(
-          `http://localhost:7180/api/Product/${item.id}`,
+          `https://localhost:7180/api/Product/product-detail-${item.productId}`,
           {
             method: "GET",
             headers: {
@@ -99,7 +99,7 @@ function ProductPage() {
       }
     };
     fetchreviewsdata();
-    fetchproductvariant();
+    // fetchproductvariant();
   }, []);
 
   const getCookie = (cookieName) => {
@@ -117,20 +117,24 @@ function ProductPage() {
   const cartId = getCookie("CartId");
   const handleAddToCart = async () => {
     setAmount(1); // Đặt lại số lượng sau khi thêm vào giỏ hàng
+    if (!selectedColor || !selectedSize) {
+      message.warning(
+        "Vui lòng chọn kích thước và màu sắc trước khi thêm vào giỏ hàng."
+      );
+      return;
+    }
     try {
       const data = {
-        colorId: selectedColor.id,
-        sizeId: selectedSize.id,
-        productId: item.id,
+        userId: userId,
+        productVariantId: selectedColor.productVariantId, // Giả định mỗi biến thể có ID riêng
         quantity: amount,
-        cartID: Number(cartId),
-        price: item.price,
-        discount: item.discount,
+        discount: selectedColor.discount || 0,
       };
       console.log("34tyui", data);
       const response = await fetch(
-        `http://localhost:7180/cartitem/create-cart-item`,
+        `https://localhost:7180/api/Cart/add`,
         {
+          mode: 'cors',
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -176,21 +180,28 @@ function ProductPage() {
   function ExhibitionContent({ content }) {
     return <div>{convertNewlinesToBreaks(content)}</div>;
   }
+
   return (
     <div>
-      {item && (
+      {reviewsdata && (
         <div>
           <Row className="pp_white_bg">
             <Col md={5} offset={1} className="image_column">
-              <Image src={item.picture} alt={item.title} />
+              {reviewsdata.images && reviewsdata.images.length > 0 ? (
+                <Image src={reviewsdata.images[0].url} alt={reviewsdata.name} />
+              ) : (
+                <Image src="/placeholder.png" alt="No image available" />
+              )}
             </Col>
             <Col md={14} offset={1} className="shortdetail_column">
               <List className="detail_list">
                 <List.Item>
-                  <h1>{item.title}</h1>
+                  <h1>{reviewsdata.name}</h1>
                 </List.Item>
                 <List.Item>
-                  <span className="price">{item.price}đ</span>
+                  <span className="price">
+                    {reviewsdata.productVariants?.[0]?.price || 0}đ
+                  </span>
                 </List.Item>
                 <List.Item className="pp_amount">
                   <span>Số lượng:</span>
@@ -204,60 +215,65 @@ function ProductPage() {
                 <List.Item>
                   <span className="label">Màu sắc:</span>
                   <div style={{ display: "inline-block", marginLeft: "8px" }}>
-                    {color.map((color) => (
-                      <div
-                        key={color.id}
-                        style={{
-                          display: "inline-block",
-                          width: "20px",
-                          height: "20px",
-                          backgroundColor: color.hex,
-                          borderRadius: "50%",
-                          border:
-                            selectedColor?.id === color.id
-                              ? "2px solid #000"
-                              : "1px solid #ddd",
-                          margin: "0 5px",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => handleColorSelect(color)}
-                      />
-                    ))}
+                    {reviewsdata.productVariants &&
+                      reviewsdata.productVariants.map((variant) => (
+                        <div
+                          key={variant.productVariantId}
+                          style={{
+                            display: "inline-block",
+                            width: "20px",
+                            height: "20px",
+                            backgroundColor: variant.colorHex,
+                            borderRadius: "50%",
+                            border:
+                              selectedColor?.productVariantId ===
+                              variant.productVariantId
+                                ? "2px solid #000"
+                                : "1px solid #ddd",
+                            margin: "0 5px",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => handleColorSelect(variant)}
+                        />
+                      ))}
                   </div>
                 </List.Item>
-
-                {/* Kích thước */}
                 <List.Item>
                   <span className="label">Kích thước:</span>
                   <div style={{ marginLeft: "8px" }}>
-                    {size.map((size) => (
-                      <span
-                        key={size.id}
-                        style={{
-                          padding: "5px 10px",
-                          border:
-                            selectedSize?.id === size.id
-                              ? "2px solid #000"
-                              : "1px solid #ddd",
-                          margin: "0 5px",
-                          cursor: "pointer",
-                          backgroundColor:
-                            selectedSize?.id === size.id
-                              ? "#f0f0f0"
-                              : "transparent",
-                        }}
-                        onClick={() => handleSizeSelect(size)}
-                      >
-                        {size.name || `Size: ${size.size || "Không rõ"}`}
-                      </span>
-                    ))}
+                    {reviewsdata.productVariants &&
+                      reviewsdata.productVariants.map((variant) => (
+                        <span
+                          key={variant.productVariantId}
+                          style={{
+                            padding: "5px 10px",
+                            border:
+                              selectedSize?.productVariantId ===
+                              variant.productVariantId
+                                ? "2px solid #000"
+                                : "1px solid #ddd",
+                            margin: "0 5px",
+                            cursor: "pointer",
+                            backgroundColor:
+                              selectedSize?.productVariantId ===
+                              variant.productVariantId
+                                ? "#f0f0f0"
+                                : "transparent",
+                          }}
+                          onClick={() => handleSizeSelect(variant)}
+                        >
+                          {variant.sizeName}
+                        </span>
+                      ))}
                   </div>
                 </List.Item>
                 <List.Item>
                   <Button
                     className="addtocart_button"
                     size="large"
+                    type="primary"
                     onClick={handleAddToCart}
+                    disabled={!selectedSize || !selectedColor}
                   >
                     <ShoppingCartOutlined />
                     Thêm vào giỏ hàng
@@ -272,9 +288,10 @@ function ProductPage() {
                 <List.Item>
                   <h2>Mô tả sản phẩm</h2>
                 </List.Item>
-                {/* <List.Item style={{ fontSize: "16px", color: "#8c8c8c" }}>
-                  <ExhibitionContent content={item.description} />
-                </List.Item> */}
+                <List.Item style={{ fontSize: "16px", color: "#8c8c8c" }}>
+                  {reviewsdata.description ||
+                    "Không có mô tả cho sản phẩm này."}
+                </List.Item>
               </List>
             </Col>
           </Row>
