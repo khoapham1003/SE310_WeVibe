@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WeVibe.Core.Contracts.Order;
+using WeVibe.Core.Domain.Entities;
 using WeVibe.Core.Services.Abstractions.Features;
 
 namespace WeVibe.API.Controllers
@@ -93,6 +94,25 @@ namespace WeVibe.API.Controllers
                 }
 
                 return Ok(orderHistory);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [HttpGet("order/{orderId}")]
+        [SwaggerOperation(Summary = "Get order by ID", Description = "Retrieve detailed information about a specific order.")]
+        [SwaggerResponse(200, "Order retrieved successfully", typeof(OrderDto))]
+        [SwaggerResponse(401, "Unauthorized - User not found in token.")]
+        [SwaggerResponse(404, "Order not found.")]
+        public async Task<IActionResult> GetOrderById(int orderId)
+        {
+            try
+            {
+
+                var orderDetail = await _orderService.GetOrderByIdAsync(orderId);
+
+                return Ok(orderDetail);
             }
             catch (Exception ex)
             {
