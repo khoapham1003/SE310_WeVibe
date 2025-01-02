@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using WeVibe.Core.Contracts.Order;
-using WeVibe.Core.Contracts.Transaction;
 using WeVibe.Core.Domain.Entities;
 using WeVibe.Core.Domain.Repositories;
 using WeVibe.Core.Services.Abstractions.Features;
+using WeVibe.Infrastructure.Persistence.DataContext;
 
 namespace WeVibe.Core.Services.Features
 {
@@ -12,38 +13,17 @@ namespace WeVibe.Core.Services.Features
         private readonly IOrderRepository _orderRepository;
         private readonly ICartRepository _cartRepository;
         private readonly IMapper _mapper;
+        private readonly ApplicationDbContext _context;
 
-        public OrderService(IOrderRepository orderRepository, ICartRepository cartRepository, IMapper mapper)
+        public OrderService(IOrderRepository orderRepository,
+            ICartRepository cartRepository,
+            IMapper mapper,
+            ApplicationDbContext context)
         {
             _orderRepository = orderRepository;
             _cartRepository = cartRepository;
             _mapper = mapper;
-        }
-        public async Task<OrderDto> GetOrderByIdAsync(int orderId)
-        {
-            var order = await _orderRepository.GetOrderWithTransactionAndItemsAsync(orderId);
-
-            var orderDetailDto = new OrderDto
-            {
-                OrderId = order.OrderId,
-                TotalAmount = order.TotalAmount,
-                Status = order.Status,
-                AddressValue = order.AddressValue,
-                RecipientName = order.RecipientName,
-                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
-                {
-                    OrderItemId = oi.OrderItemId,
-                    ProductId = oi.ProductId,
-                    Quantity = oi.Quantity,
-                    UnitPrice = oi.UnitPrice,
-                    ProductVariantId = oi.ProductVariantId,
-                    ProductName = oi.Product.Name,
-                    SizeName = oi.ProductVariant.Size.Name,
-                    ColorName = oi.ProductVariant.Color.Name
-                }).ToList(),
-            };
-
-            return orderDetailDto;
+            _context = context;
         }
         public async Task<OrderDto> CreateOrderAsync(string userId)
         {
@@ -65,7 +45,7 @@ namespace WeVibe.Core.Services.Features
                 TotalAmount = totalAmount,
                 Status = "Pending",
                 UserId = userId,
-                AddressValue = string.Empty, 
+                AddressValue = string.Empty,
                 RecipientName = "Unknown Recipient",
                 OrderItems = cart.CartItems.Select(ci => new OrderItem
                 {
@@ -81,27 +61,7 @@ namespace WeVibe.Core.Services.Features
             cart.CartItems.Clear();
             await _cartRepository.UpdateAsync(cart);
 
-            var orderDto = new OrderDto
-            {
-                OrderId = order.OrderId,
-                TotalAmount = order.TotalAmount,
-                Status = order.Status,
-                UserId = order.UserId,
-                RecipientName = order.RecipientName,
-                AddressValue = order.AddressValue,
-                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
-                {
-                    OrderItemId = oi.OrderItemId,
-                    ProductId = oi.ProductId,
-                    Quantity = oi.Quantity,
-                    UnitPrice = oi.UnitPrice,
-                    
-                    ProductVariantId = oi.ProductVariantId,
-                    ProductName = oi.Product.Name,
-                    SizeName = oi.ProductVariant.Size.Name,
-                    ColorName = oi.ProductVariant.Color.Name 
-                }).ToList()
-            };
+            var orderDto = _mapper.Map<OrderDto>(order);
 
             return orderDto;
         }
@@ -124,26 +84,34 @@ namespace WeVibe.Core.Services.Features
             var orderDetailDto = _mapper.Map<OrderDto>(order);
 
             return orderDetailDto;
-            //var orderDetailDto = new OrderDto
-            //{
-            //    OrderId = order.OrderId,
-            //    TotalAmount = order.TotalAmount,
-            //    Status = order.Status,
-            //    AddressValue = order.AddressValue,
-            //    RecipientName = order.RecipientName,
-            //    OrderItems = order.OrderItems.Select(oi => new OrderItemDto
-            //    {
-            //        OrderItemId = oi.OrderItemId,
-            //        ProductId = oi.ProductId,
-            //        Quantity = oi.Quantity,
-            //        UnitPrice = oi.UnitPrice,
-            //        ProductVariantId = oi.ProductVariantId,
-            //        ProductName = oi.Product.Name,
-            //        SizeName = oi.ProductVariant.Size.Name,
-            //        ColorName = oi.ProductVariant.Color.Name
-            //    }).ToList(),
-            //};
+        }
+        public async Task<List<OrderDto>> GetAllOrdersAsync()
+        {
+            var orders = await _orderRepository.GetAllWithDetailsAsync();
+            return _mapper.Map<List<OrderDto>>(orders);
+        }
+        public async Task<OrderDto> UpdateOrderStatusAsync(int orderId, string status)
+        {
+            var order = await _orderRepository.GetByIdAsync(orderId);
+            if (order == null) throw new Exception("Order not found.");
+
+            order.Status = status;
+            await _orderRepository.UpdateAsync(order);
+
+            return await GetOrderByIdAsync(orderId);
         }
 
+        public async Task DeleteOrderAsync(int orderId)
+        {
+            var order = await _orderRepository.GetByIdAsync(orderId);
+            if (order == null)
+                throw new Exception("Order not found.");
+
+            _context.OrderItems.RemoveRange(order.OrderItems);
+
+
+            await _orderRepository.DeleteAsync(order.OrderId);
+            await _orderRepository.SaveAsync();
+        }
     }
 }

@@ -8,7 +8,6 @@ namespace WeVibe.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CartController : Controller
     {
         private readonly ICartService _cartService;

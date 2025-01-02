@@ -32,6 +32,7 @@ namespace WeVibe.Core.Services.Features
             }
 
             order.AddressValue = createTransactionDto.Address;
+            order.RecipientName = createTransactionDto.RecipientName;
 
             await _orderRepository.UpdateAsync(order);
             await _orderRepository.SaveAsync();
@@ -46,7 +47,7 @@ namespace WeVibe.Core.Services.Features
             {
                 transaction.Status = "Pending";
             }
-
+            await _transactionRepository.AddAsync(transaction);
             await _transactionRepository.SaveAsync();
 
             return _mapper.Map<TransactionDto>(transaction);

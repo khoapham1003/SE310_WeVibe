@@ -6,5 +6,6 @@ namespace WeVibe.Core.Domain.Repositories
     {
         Task<IEnumerable<Order>> GetOrdersWithTransactionsByUserIdAsync(string userId);
         Task<Order> GetOrderWithTransactionAndItemsAsync(int orderId);
+        Task<List<Order>> GetAllWithDetailsAsync();
     }
 }

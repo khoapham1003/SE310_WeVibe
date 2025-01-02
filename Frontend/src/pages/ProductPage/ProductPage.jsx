@@ -24,6 +24,7 @@ function ProductPage() {
   const [color, setColor] = useState([]);
   const [size, setSize] = useState([]);
   const [productvariant, setProductVariant] = useState([]);
+  const [selectedVariant, setSelectedVariant] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   useEffect(() => {
@@ -131,18 +132,15 @@ function ProductPage() {
         discount: selectedColor.discount || 0,
       };
       console.log("34tyui", data);
-      const response = await fetch(
-        `https://localhost:7180/api/Cart/add`,
-        {
-          mode: 'cors',
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`,
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch(`https://localhost:7180/api/Cart/add`, {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        body: JSON.stringify(data),
+      });
       console.log(response);
       if (response.ok) {
         navigate(`/`);
@@ -170,12 +168,17 @@ function ProductPage() {
   }
 
   const handleColorSelect = (color) => {
+    setSelectedVariant(color);
     setSelectedColor(color);
   };
 
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
   };
+
+  const selectedPrice = selectedVariant
+    ? selectedVariant.price
+    : reviewsdata.productVariants?.[0]?.price || 0;
 
   function ExhibitionContent({ content }) {
     return <div>{convertNewlinesToBreaks(content)}</div>;
@@ -188,9 +191,15 @@ function ProductPage() {
           <Row className="pp_white_bg">
             <Col md={5} offset={1} className="image_column">
               {reviewsdata.images && reviewsdata.images.length > 0 ? (
-                <Image src={reviewsdata.images[0].url} alt={reviewsdata.name} />
+                <Image
+                  src={`https://localhost:7180/static${item.images[0].imagePath}`}
+                  alt={item.name}
+                />
               ) : (
-                <Image src="/placeholder.png" alt="No image available" />
+                <Image
+                //  src={`https://localhost:7180/static${item.productVariant.product.images[0].imagePath}`}
+                  alt={item.name}
+                />
               )}
             </Col>
             <Col md={14} offset={1} className="shortdetail_column">
@@ -199,9 +208,7 @@ function ProductPage() {
                   <h1>{reviewsdata.name}</h1>
                 </List.Item>
                 <List.Item>
-                  <span className="price">
-                    {reviewsdata.productVariants?.[0]?.price || 0}đ
-                  </span>
+                  <span className="price">{selectedPrice}đ</span>
                 </List.Item>
                 <List.Item className="pp_amount">
                   <span>Số lượng:</span>
@@ -212,6 +219,7 @@ function ProductPage() {
                     onChange={setAmount}
                   />
                 </List.Item>
+
                 <List.Item>
                   <span className="label">Màu sắc:</span>
                   <div style={{ display: "inline-block", marginLeft: "8px" }}>
@@ -226,7 +234,7 @@ function ProductPage() {
                             backgroundColor: variant.colorHex,
                             borderRadius: "50%",
                             border:
-                              selectedColor?.productVariantId ===
+                              selectedVariant?.productVariantId ===
                               variant.productVariantId
                                 ? "2px solid #000"
                                 : "1px solid #ddd",
