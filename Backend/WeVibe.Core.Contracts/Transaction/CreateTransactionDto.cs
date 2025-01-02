@@ -2,9 +2,9 @@
 {
     public class CreateTransactionDto
     {
-        public string Status { get; set; }
         public string PaymentMethod { get; set; }
-        public decimal PayAmount { get; set; }
+        public string RecipientName { get; set; }
+        public string Address { get; set; }
         public int OrderId { get; set; }
     }
 }

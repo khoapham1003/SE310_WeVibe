@@ -32,7 +32,7 @@ namespace WeVibe.Core.Services.Features
         }
         public async Task<ProductVariantDto> CreateAsync(CreateProductVariantDto createDto)
         {
-            var product = await _productRepository.GetByIdAsync(createDto.ProductId);
+            var product = await _productRepository.GetProductByIdAsync(createDto.ProductId);
             if (product == null)
                 throw new KeyNotFoundException("Product not found");
 
@@ -62,6 +62,9 @@ namespace WeVibe.Core.Services.Features
 
             await _productVariantRepository.AddAsync(productVariant);
             await _productVariantRepository.SaveAsync();
+
+            product.Quantity += productVariant.Quantity;
+            await _productRepository.UpdateAsync(product);
 
             return _mapper.Map<ProductVariantDto>(productVariant);
         }
