@@ -19,6 +19,32 @@ namespace WeVibe.Core.Services.Features
             _cartRepository = cartRepository;
             _mapper = mapper;
         }
+        public async Task<OrderDto> GetOrderByIdAsync(int orderId)
+        {
+            var order = await _orderRepository.GetOrderWithTransactionAndItemsAsync(orderId);
+
+            var orderDetailDto = new OrderDto
+            {
+                OrderId = order.OrderId,
+                TotalAmount = order.TotalAmount,
+                Status = order.Status,
+                AddressValue = order.AddressValue,
+                RecipientName = order.RecipientName,
+                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
+                {
+                    OrderItemId = oi.OrderItemId,
+                    ProductId = oi.ProductId,
+                    Quantity = oi.Quantity,
+                    UnitPrice = oi.UnitPrice,
+                    ProductVariantId = oi.ProductVariantId,
+                    ProductName = oi.Product.Name,
+                    SizeName = oi.ProductVariant.Size.Name,
+                    ColorName = oi.ProductVariant.Color.Name
+                }).ToList(),
+            };
+
+            return orderDetailDto;
+        }
         public async Task<OrderDto> CreateOrderAsync(string userId)
         {
             var cart = await _cartRepository.GetCartWithItemsByUserIdAsync(userId);
@@ -55,29 +81,27 @@ namespace WeVibe.Core.Services.Features
             cart.CartItems.Clear();
             await _cartRepository.UpdateAsync(cart);
 
-            var orderDto = _mapper.Map<OrderDto>(order);
-
-            //var orderDto = new OrderDto
-            //{
-            //    OrderId = order.OrderId,
-            //    TotalAmount = order.TotalAmount,
-            //    Status = order.Status,
-            //    UserId = order.UserId,
-            //    AddressValue = order.AddressValue,
-            //    RecipientName = order.RecipientName,
-            //    OrderItems = order.OrderItems.Select(oi => new OrderItemDto
-            //    {
-            //        OrderItemId = oi.OrderItemId,
-            //        ProductId = oi.ProductId,
-            //        Quantity = oi.Quantity,
-            //        UnitPrice = oi.UnitPrice,
+            var orderDto = new OrderDto
+            {
+                OrderId = order.OrderId,
+                TotalAmount = order.TotalAmount,
+                Status = order.Status,
+                UserId = order.UserId,
+                RecipientName = order.RecipientName,
+                AddressValue = order.AddressValue,
+                OrderItems = order.OrderItems.Select(oi => new OrderItemDto
+                {
+                    OrderItemId = oi.OrderItemId,
+                    ProductId = oi.ProductId,
+                    Quantity = oi.Quantity,
+                    UnitPrice = oi.UnitPrice,
                     
-            //        ProductVariantId = oi.ProductVariantId,
-            //        SizeName = oi.ProductVariant.Size.Name,
-            //        ColorName = oi.ProductVariant.Color.Name 
-            //    }).ToList()
-            //};
-
+                    ProductVariantId = oi.ProductVariantId,
+                    ProductName = oi.Product.Name,
+                    SizeName = oi.ProductVariant.Size.Name,
+                    ColorName = oi.ProductVariant.Color.Name 
+                }).ToList()
+            };
 
             return orderDto;
         }

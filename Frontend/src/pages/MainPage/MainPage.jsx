@@ -49,7 +49,7 @@ function MainPage() {
 
   const handleCardClick = (item) => {
     console.log("Card clicked:", item);
-    navigate(`/product-detail-${item.productId}`, { state: { item } });
+    navigate(`/product-detail/${item.productId}`, { state: { item } });
   };
 
   return (
