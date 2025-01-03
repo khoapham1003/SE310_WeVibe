@@ -16,7 +16,7 @@ const SearchPage = () => {
         setLoading(true);
 
         const response = await fetch(
-          `http://localhost:7180/product/get-all?page=0&limit=4&filter=name&filter=${searchValue}`
+          `https://localhost:7180/api/Product/search?searchString=${searchValue}`
         );
 
         if (!response.ok) {
@@ -26,7 +26,7 @@ const SearchPage = () => {
         const data = await response.json();
         console.log("API Response:", data);
 
-        setItems(data.data);
+        setItems(data);
       } catch (error) {
         console.error("API Error:", error);
       } finally {
@@ -44,7 +44,7 @@ const SearchPage = () => {
 
   const handleCardClick = (item) => {
     console.log("Card clicked:", item);
-    navigate(`/product-detail/${item.iProduct_id}`, { state: { item } });
+    navigate(`/product-detail/${item.productId}`, { state: { item } });
   };
 
   return (
@@ -67,34 +67,16 @@ const SearchPage = () => {
             cover={
               <img
                 className="mp_product_item_image"
+                src={`https://localhost:7180/static${item.images[0].imagePath}`}
                 alt={item.name}
-                src={item.image}
               />
             }
             onClick={() => handleCardClick(item)}
           >
             <div className="flex_column">
               <div className="title_start_container">
-                <span className="product_title">{item.name}</span>
-                {/* <Rate
-                  disabled
-                  className="product_star"
-                  defaultValue={item.dProduct_start_count}
-                /> */}
+                <span className="book_title">{item.name}</span>
               </div>
-              <span className="product_price">
-                {item.price}
-                <span
-                  style={{
-                    verticalAlign: "super",
-                    fontSize: "10px",
-                    textDecoration: "underline",
-                    marginLeft: "2px",
-                  }}
-                >
-                  đ
-                </span>
-              </span>
             </div>
           </Card>
         ))}

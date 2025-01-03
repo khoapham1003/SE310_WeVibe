@@ -204,6 +204,12 @@ function CartPage() {
         <Col md={2}>
           <h3>Sản phẩm</h3>
         </Col>
+        <Col md={2}>
+          <h3>Size</h3>
+        </Col>
+        <Col md={2}>
+          <h3>Color</h3>
+        </Col>
         <Col md={8}></Col>
         <Col md={3} offset={1}>
           <h3>Đơn giá</h3>
@@ -236,8 +242,14 @@ function CartPage() {
                   alt={item.name}
                 />
               </Col>
-              <Col md={8}>
+              <Col md={4}>
                 <span>{item.productVariant.product.name} </span>
+              </Col>
+              <Col md={3}>
+                <span>{item.productVariant.sizeName} </span>
+              </Col>
+              <Col md={3}>
+                <span>{item.productVariant.colorName} </span>
               </Col>
               <Col md={3} offset={1}>
                 <span> {item.unitPrice}đ</span>

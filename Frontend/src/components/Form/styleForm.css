@@ -76,7 +76,8 @@
   padding: 0px 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  overflow-y: auto !important;
 }
 .forgotpassword_form {
   width: 22rem;
@@ -87,7 +88,7 @@
   padding: 0 1rem 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .confirmcode_form {
   width: 22rem;

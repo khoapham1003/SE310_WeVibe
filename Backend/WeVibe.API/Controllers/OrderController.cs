@@ -48,17 +48,17 @@ namespace WeVibe.API.Controllers
                 return BadRequest(new { message = ex.Message, innerException = ex.InnerException?.Message });
             }
         }
-        [Authorize]
+
         [HttpGet("orders-history")]
         [SwaggerOperation(Summary = "Get order history", Description = "Retrieve the user's order history including transaction details.")]
         [SwaggerResponse(200, "Order history retrieved successfully", typeof(IEnumerable<OrderHistoryDto>))]
         [SwaggerResponse(401, "Unauthorized - User not found in token.")]
         [SwaggerResponse(404, "No orders found for this user.")]
-        public async Task<IActionResult> GetOrderHistory()
+        public async Task<IActionResult> GetOrderHistory([FromBody] GetOrderHistoryDto dto)
         {
             try
             {
-                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                var userId = dto.UserId;
 
                 if (string.IsNullOrEmpty(userId))
                 {

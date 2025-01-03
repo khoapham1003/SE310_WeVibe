@@ -52,8 +52,8 @@ const FilteredPage = () => {
     window.location.reload();
   };
 
-  const handleProductClick = (item) => {
-    navigate(`/product-detail/${item.id}`, { state: { item } });
+  const handleCardClick = (item) => {
+    navigate(`/product-detail/${item.productId}`, { state: { item } });
   };
 
   return (
