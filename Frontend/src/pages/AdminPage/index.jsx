@@ -28,14 +28,18 @@ function AdminPage() {
 
   return (
     <div>
-      <Tabs activeKey={activeTab} onChange={handleTabChange}>
-        <TabPane tab="Products" key="product">
+      <Tabs
+        style={{ marginLeft: "1rem" }}
+        activeKey={activeTab}
+        onChange={handleTabChange}
+      >
+        <TabPane tab="Sản phẩm" key="product">
           <ProductAdmin />
         </TabPane>
-        <TabPane tab="Users" key="user">
+        <TabPane tab="Người dùng" key="user">
           <UserAdmin />
         </TabPane>
-        <TabPane tab="Orders" key="order">
+        <TabPane tab="Đơn hàng" key="order">
           <OrderAdmin />
         </TabPane>
       </Tabs>

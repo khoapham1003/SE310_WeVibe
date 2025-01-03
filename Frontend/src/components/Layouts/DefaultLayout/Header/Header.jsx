@@ -26,7 +26,7 @@ function Header() {
         key="profile"
         icon={<UserOutlined />}
         onClick={() => {
-          navigate("/profile_page");
+         // navigate("/profile_page");
         }}
       >
         Thông tin tài khoản

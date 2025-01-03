@@ -17,6 +17,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { IoMdAdd } from "react-icons/io";
 import { UploadOutlined } from "@ant-design/icons";
 import "./../../../stylePage.css";
+import { FaBoxesPacking, FaRightToBracket } from "react-icons/fa6";
 
 const { Option } = Select;
 
@@ -176,6 +177,7 @@ function ProductAdmin() {
       .then((values) => {
         editProduct(currentItemId, values);
         setIsEditModalVisible(false);
+        form.resetFields();
       })
       .catch((info) => {
         console.log("Validate Failed:", info);
@@ -199,6 +201,7 @@ function ProductAdmin() {
         };
         addProduct(requestBody);
         setIsAddModalVisible(false);
+        addForm.resetFields();
       })
       .catch((info) => {
         console.log("Validate Failed:", info);
@@ -237,8 +240,7 @@ function ProductAdmin() {
         className="profilepage_button admin_button"
       >
         <IoMdAdd />
-        <em />
-        <strong> ADD PRODUCT</strong>
+        <strong>THÊM MỚI SẢN PHẨM</strong>
       </Button>
       <div className="cop_cartlist_header">
         <Col md={3} offset={1}>
@@ -279,7 +281,7 @@ function ProductAdmin() {
                     <FaTrash />
                   </Button>
                   <Button onClick={() => showEditForm(item.productId)}>
-                    <FaEdit />
+                    <FaRightToBracket />
                   </Button>
                 </span>
               </Col>

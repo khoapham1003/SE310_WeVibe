@@ -238,13 +238,16 @@ function ProfilePage() {
 
   useEffect(() => {
     const fetchHistoryOrder = async () => {
-      const apiUrl = `http://localhost:7180/order/get-all-order/${userId}`;
+      const requestData = {
+        userId: userId,
+      }
+      const apiUrl = `https://localhost:7180/api/Order/orders-history`;
       try {
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
-            token: `Bearer ${jwtToken}`,
           },
+          body: JSON.stringify(requestData),
         });
 
         if (!response.ok) {
@@ -253,7 +256,7 @@ function ProfilePage() {
 
         const data = await response.json();
         console.log(data);
-        setItems(data.data);
+        setItems(data);
         return data;
       } catch (error) {
         console.error("Error fetching product data:", error);
